@@ -22,6 +22,7 @@ namespace MeineNoten
     {
         public MainWindow()
         {
+            
             InitializeComponent();
         }
     }

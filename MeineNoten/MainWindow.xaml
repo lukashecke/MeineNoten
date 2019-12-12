@@ -5,8 +5,124 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeineNoten"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Meine Noten" Height="450" Width="800" Background="White">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Anwendungsentwicklung und Programmierung"
+               Grid.Column="0"
+               Grid.Row="0"/>
+        <Label Content="0"
+               HorizontalAlignment="Right"
+               Grid.Column="0"
+               Grid.Row="0"/>
+        <ComboBox HorizontalAlignment="Right"
+                  VerticalAlignment="Bottom"
+                  SelectedValue="">
+            <ComboBoxItem Content="1"/>
+            <ComboBoxItem Content="2"/>
+            <ComboBoxItem Content="3"/>
+            <ComboBoxItem Content="4"/>
+            <ComboBoxItem Content="5"/>
+            <ComboBoxItem Content="6"/>
+        </ComboBox>
+        <Button Content="Eintragen" 
+                    Height="22" 
+                    Width="53" 
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom" Margin="310,0,33,0"/>
+
+        <Label Content="IT-Systeme"
+               Grid.Column="0"
+               Grid.Row="1"/>
+        <Label Content="0"
+               HorizontalAlignment="Right"
+               Grid.Column="0"
+               Grid.Row="1"/>
+        <Label Content="Vernetzte Systeme"
+               Grid.Column="0"
+               Grid.Row="2"/>
+        <Label Content="0"
+               HorizontalAlignment="Right"
+               Grid.Column="0"
+               Grid.Row="2"/>
+        <Label Content="Betriebswirtschaftliche Prozesse"
+               Grid.Column="0"
+               Grid.Row="3"/>
+        <Label Content="0"
+               HorizontalAlignment="Right"
+               Grid.Column="0"
+               Grid.Row="3"/>
+        <Label Content="0"
+               HorizontalAlignment="Right"
+               Grid.Column="0"
+               Grid.Row="4"/>
+        <Label Content="Sozialkunde"
+               Grid.Column="0"
+               Grid.Row="4"/>
+        <Label Content="0"
+               HorizontalAlignment="Right"
+               Grid.Column="1"
+               Grid.Row="0"/>
+        <Label Content="Deutsch"
+               Grid.Column="1"
+               Grid.Row="0"
+               />
+        <Label Content="0"
+               HorizontalAlignment="Right"
+               Grid.Column="1"
+               Grid.Row="1"/>
+        <Label Content="Englisch"
+               Grid.Column="1"
+               Grid.Row="1"
+               />
+        <Label Content="0"
+               HorizontalAlignment="Right"
+               Grid.Column="1"
+               Grid.Row="2"/>
+        <Label Content="Ethik"
+               Grid.Column="1"
+               Grid.Row="2"
+               />
+        <Label Content="0"
+               HorizontalAlignment="Right"
+               Grid.Column="1"
+               Grid.Row="3"/>
+        <Label Content="Sport"
+               Grid.Column="1"
+               Grid.Row="3"
+               />
+        <Label Content="Crimpen und Löten"
+               Grid.Column="1"
+               Grid.Row="4"
+               />
+        <Label Content="0"
+               HorizontalAlignment="Right"
+               Grid.Column="1"
+               Grid.Row="4"/>
+        <Label Content="Gesamtnote"
+               HorizontalAlignment="Center"
+               Grid.Column="0"
+               Grid.Row="5"
+               Grid.ColumnSpan="2"
+               />
+        <Label Content="0"
+               HorizontalAlignment="center"
+               VerticalAlignment="Center"
+               Grid.Column="0"
+               Grid.Row="5"
+               Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
