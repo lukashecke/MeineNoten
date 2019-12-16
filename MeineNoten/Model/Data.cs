@@ -6,9 +6,23 @@ using System.Threading.Tasks;
 
 namespace MeineNoten
 {
-    class Data
+    public class Data
     {
-        public List<int> APGrades { get; set; }
+        private List<int> apGrades;
+        public List<int> APGrades
+        {
+            get
+            {
+                if (apGrades == null)
+                {
+                    apGrades = new List<int>();
+                }
+
+                return apGrades;
+            }
+        }
+
+        // Umschreiben!
         public List<int> ITGrades { get; set; }
         public List<int> VSGrades { get; set; }
         public List<int> BWGrades { get; set; }
@@ -17,6 +31,9 @@ namespace MeineNoten
         public List<int> ENGrades { get; set; }
         public List<int> ETGrades { get; set; }
         public List<int> CLGrades { get; set; }
+
+
+      
 
     }
 }

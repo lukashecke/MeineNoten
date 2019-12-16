@@ -26,17 +26,14 @@
                HorizontalAlignment="Right"
                Grid.Column="0"
                Grid.Row="0"/>
-        <ComboBox HorizontalAlignment="Right"
-                  VerticalAlignment="Bottom"
-                  SelectedValue="">
-            <ComboBoxItem Content="1"/>
-            <ComboBoxItem Content="2"/>
-            <ComboBoxItem Content="3"/>
-            <ComboBoxItem Content="4"/>
-            <ComboBoxItem Content="5"/>
-            <ComboBoxItem Content="6"/>
-        </ComboBox>
+        <ComboBox x:Name="GradesBox"
+                    DataContext="{Binding}" 
+                  ItemsSource="{Binding Grades}"
+                  SelectedItem="{Binding SelectedItem}"
+                  DisplayMemberPath="Title"
+                  SelectedValuePath="Value" Margin="368,48,5,0"/>
         <Button Content="Eintragen" 
+                Click="Eintragen_Click"
                     Height="22" 
                     Width="53" 
                     Grid.Column="0"
