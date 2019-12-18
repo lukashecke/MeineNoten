@@ -26,7 +26,7 @@
                HorizontalAlignment="Right"
                Grid.Column="0"
                Grid.Row="0"/>
-        <ComboBox x:Name="GradesBox"
+        <ComboBox 
                     DataContext="{Binding}" 
                   ItemsSource="{Binding Grades}"
                   SelectedItem="{Binding SelectedItem}"
