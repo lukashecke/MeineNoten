@@ -52,7 +52,15 @@ namespace MeineNoten
             InitializeComponent();
 
             dataSet = new DataSet();
-            dataSet.ReadXml("MeineNoten.xml");
+            try
+            {
+                dataSet.ReadXml("MeineNoten.xml");
+            }
+            catch (Exception)
+            {
+
+            }
+            
         }
 
         private void Eintragen_Click(object sender, RoutedEventArgs e)
