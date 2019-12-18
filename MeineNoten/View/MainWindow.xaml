@@ -27,7 +27,7 @@
                Grid.Column="0"
                Grid.Row="0"/>
         <ComboBox 
-                    DataContext="{Binding}" 
+                  DataContext="{Binding}" 
                   ItemsSource="{Binding Grades}"
                   SelectedItem="{Binding SelectedItem}"
                   DisplayMemberPath="Title"
@@ -115,7 +115,7 @@
                Grid.Row="5"
                Grid.ColumnSpan="2"
                />
-        <Label Content="0"
+        <Label Content="{Binding TotalGrade}"
                HorizontalAlignment="center"
                VerticalAlignment="Center"
                Grid.Column="0"

@@ -9,7 +9,7 @@ namespace MeineNoten
 {
     public class Data
     {
-        private DataSet database;
+        public DataSet database;
         public DataSet Database
         {
             get
@@ -23,7 +23,7 @@ namespace MeineNoten
             }
         }
 
-        private DataTable dataTable=new DataTable();
+        public DataTable dataTable=new DataTable();
 
         private List<int> apGrades;
         public List<int> APGrades

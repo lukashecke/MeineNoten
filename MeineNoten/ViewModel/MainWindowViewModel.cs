@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +20,9 @@ namespace MeineNoten.ViewModel
             this.Grades.Add(new Grade("4", 4));
             this.Grades.Add(new Grade("5", 5));
             this.Grades.Add(new Grade("6", 6));
+            
+
+            
         }
 
         private ObservableCollection<Grade> grades;
@@ -49,6 +54,23 @@ namespace MeineNoten.ViewModel
             {
                 this.selectedItem = value;
                 this.OnPropertyChanged("SelectedItem");
+
+            }
+        }
+
+        private Grade totalGrade;
+        public Grade TotalGrade
+        {
+            get
+            {
+                
+                
+                return this.totalGrade;
+            }
+            set
+            {
+                this.totalGrade = value;
+                this.OnPropertyChanged("TotalGrade");
 
             }
         }
