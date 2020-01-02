@@ -69,10 +69,6 @@ namespace MeineNoten
             InitializeComponent();
 
             LoadData();
-
-            
-            
-           
         }
 
         private IEnumerable CreateGrades()
