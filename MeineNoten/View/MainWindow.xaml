@@ -7,6 +7,110 @@
         mc:Ignorable="d"
         Title="Meine Noten" Height="450" Width="800" Background="White">
     <Grid>
+        <ListBox HorizontalAlignment="Left" 
+             Height="342" 
+             Margin="41,40,0,0" 
+             VerticalAlignment="Top" 
+             Width="319"
+             SelectionChanged="ListBox_SelectionChanged">
+            <ListBoxItem>Anwendungsentwicklung und Programmierung</ListBoxItem>
+            <ListBoxItem>IT-Systeme</ListBoxItem>
+            <ListBoxItem>Vernetzte Systeme</ListBoxItem>
+            <ListBoxItem>Betriebswirtschaftliche Prozesse</ListBoxItem>
+            <ListBoxItem>Sozialkunde</ListBoxItem>
+            <ListBoxItem>Deutsch</ListBoxItem>
+            <ListBoxItem>Englisch</ListBoxItem>
+            <ListBoxItem>Ethik</ListBoxItem>
+            <ListBoxItem>Sport</ListBoxItem>
+            <ListBoxItem>Crimpen und Löten</ListBoxItem>
+        </ListBox>
+        <ListView Name="listView"
+                  HorizontalAlignment="Left" 
+                  Height="280" 
+                  Margin="480,40,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="285"/>
+        <Button Content="Eintragen" 
+                Click="Eintragen_Click"
+                    Height="37" 
+                    Width="105" 
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom" Margin="640,0,47,37"/>
+        <ComboBox 
+                  DataContext="{Binding}" 
+                  ItemsSource="{Binding Grades}"
+                  SelectedItem="{Binding SelectedItem}"
+                  DisplayMemberPath="Title"
+                  SelectedValuePath="Value" 
+                  VerticalAlignment="Bottom"
+                  HorizontalAlignment="Right" Margin="0,0,182,37" Height="37" Width="130"/>
+
+    </Grid>
+
+
+
+
+    <!--<Grid HorizontalAlignment="Left" 
+          Height="325" 
+          Margin="31,53,0,0" 
+          VerticalAlignment="Top" 
+          Width="519"
+          ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Anwendungsentwicklung und Programmierung"
+               Grid.Column="0"
+               Grid.Row="0"/>
+        <Label Content="IT-Systeme"
+               Grid.Column="0"
+               Grid.Row="1"/>
+        <Label Content="Vernetzte Systeme"
+               Grid.Column="0"
+               Grid.Row="2"/>
+        <Label Content="Betriebswirtschaftliche Prozesse"
+               Grid.Column="0"
+               Grid.Row="3"/>
+        <Label Content="Sozialkunde"
+               Grid.Column="0"
+               Grid.Row="4"/>
+        <Label Content="Deutsch"
+               Grid.Column="0"
+               Grid.Row="5"/>
+        <Label Content="Englisch"
+               Grid.Column="0"
+               Grid.Row="6"/>
+        <Label Content="Ethik"
+               Grid.Column="0"
+               Grid.Row="7"/>
+        <Label Content="Sport"
+               Grid.Column="0"
+               Grid.Row="8"/>
+        <Label Content="Crimpen und Löten"
+               Grid.Column="0"
+               Grid.Row="9"/>
+    </Grid>-->
+
+
+
+
+
+    <!--<Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -84,36 +188,31 @@
                Grid.Row="0"/>
         <Label Content="Deutsch"
                Grid.Column="1"
-               Grid.Row="0"
-               />
+               Grid.Row="0"/>
         <Label Content="0"
                HorizontalAlignment="Right"
                Grid.Column="1"
                Grid.Row="1"/>
         <Label Content="Englisch"
                Grid.Column="1"
-               Grid.Row="1"
-               />
+               Grid.Row="1"/>
         <Label Content="0"
                HorizontalAlignment="Right"
                Grid.Column="1"
                Grid.Row="2"/>
         <Label Content="Ethik"
                Grid.Column="1"
-               Grid.Row="2"
-               />
+               Grid.Row="2"/>
         <Label Content="0"
                HorizontalAlignment="Right"
                Grid.Column="1"
                Grid.Row="3"/>
         <Label Content="Sport"
                Grid.Column="1"
-               Grid.Row="3"
-               />
+               Grid.Row="3"/>
         <Label Content="Crimpen und Löten"
                Grid.Column="1"
-               Grid.Row="4"
-               />
+               Grid.Row="4"/>
         <Label Content="0"
                HorizontalAlignment="Right"
                Grid.Column="1"
@@ -122,13 +221,12 @@
                HorizontalAlignment="Center"
                Grid.Column="0"
                Grid.Row="5"
-               Grid.ColumnSpan="2"
-               />
+               Grid.ColumnSpan="2"/>
         <Label Content="{Binding TotalGrade}"
                HorizontalAlignment="center"
                VerticalAlignment="Center"
                Grid.Column="0"
                Grid.Row="5"
                Grid.ColumnSpan="2"/>
-    </Grid>
+    </Grid>-->
 </Window>

@@ -57,7 +57,6 @@
     </ApplicationDefinition>
     <Compile Include="Model\Data.cs" />
     <Compile Include="Model\Grade.cs" />
-    <Compile Include="Model\SavingToXml.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Page Include="View\MainWindow.xaml">
