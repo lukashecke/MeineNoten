@@ -53,7 +53,7 @@ namespace MeineNoten
             {
                 if (selection == null)
                 {
-                    selection = "VS";
+                    selection = "initializing";
                 }
                 return selection;
             }
@@ -84,7 +84,15 @@ namespace MeineNoten
                 {
                     if (row["Fach"].ToString().Equals(Selection))
                     {
-                        list.Add(Double.Parse(row["Note"].ToString()));
+                        try
+                        {
+                            list.Add(Double.Parse(row["Note"].ToString()));
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Datensatz konnte nicht vollständig geladen wedern." + Environment.NewLine +"Überprüfen sie die XML-Datei auf Fehler.","Beschädigte Daten");
+                        }
+                        
                     }
                 }
             }
