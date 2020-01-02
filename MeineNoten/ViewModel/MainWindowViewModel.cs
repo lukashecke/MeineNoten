@@ -39,25 +39,22 @@ namespace MeineNoten.ViewModel
             this.Grades.Add(new Grade("6", 6));
 
             DataSet dataSet = new DataSet();
-            dataSet.ReadXml("MeineNoten.xml");
-            //dataSet.
+            try
+            {
+                dataSet.ReadXml("MeineNoten.xml");
+            }
+            catch (Exception)
+            {
+                // Bei Erststart des Programms wird das Laden hier problemlos übersprungen
+            }
+
             foreach (DataTable table in dataSet.Tables)
             {
                 foreach (DataRow row in table.Rows)
                 {
                        MyGrades.Add(row["Note"].ToString());
-                    //Console.WriteLine(row["Note"].ToString());
-                    //foreach (DataColumn column in table.Columns)
-                    //{
-                    //    Console.WriteLine(row[column]);
-                    //}
                 }
             }
-
-            //this.myGrades.Add();
-
-
-
         }
 
         private ObservableCollection<Grade> grades;

@@ -68,13 +68,11 @@ namespace MeineNoten
             dataSet = data.Database;
             try
             {
-
-            dataSet.ReadXml("MeineNoten.xml");
+                dataSet.ReadXml("MeineNoten.xml");
             }
             catch (Exception)
             {
-
-               
+                // Bei Erststart des Programms wird das Laden hier problemlos übersprungen
             }
             data.database = dataSet;
         }
