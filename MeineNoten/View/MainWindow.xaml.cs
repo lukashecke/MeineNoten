@@ -35,51 +35,38 @@ namespace MeineNoten
         {
             get
             {
-                
                 if (dataSet == null)
                 {
                     dataSet = new DataSet();
                 }
-                
                 return dataSet;
             }
         }
-        
 
         public MainWindow()
         {
             this.DataContext = new MainWindowViewModel();
             InitializeComponent();
 
-            dataSet = new DataSet();
-            dataSet.ReadXml("MeineNoten.xml");
+            LoadData();
         }
-
+        
         private void Eintragen_Click(object sender, RoutedEventArgs e)
         {
-            data.InsertDataRow("VS",((MainWindowViewModel)DataContext).SelectedItem.Title, "2"); //Wieso Cast hier nötig????
-
-            dataSet = data.Database;
+            data.InsertDataRow("VS",((MainWindowViewModel)DataContext).SelectedItem.Title, "0"); //Wieso Cast hier nötig????
 
             using (DataSet)
             {
-               
-
                 DataSet.WriteXml("MeineNoten.xml");
-
             }
-            
-
-
         }
 
-
-
-
-
+        private void LoadData()
+        {
+            dataSet = new DataSet();
+            dataSet = data.Database;
+            dataSet.ReadXml("MeineNoten.xml");
+            data.database = dataSet;
+        }
     }
-
-    
-
-    
 }

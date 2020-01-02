@@ -12,6 +12,23 @@ namespace MeineNoten.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private ObservableCollection<String> myGrades;
+        public ObservableCollection<String> MyGrades
+        {
+            get
+            {
+                if (this.myGrades == null)
+                {
+                    this.myGrades = new ObservableCollection<String>();
+                    this.OnPropertyChanged("MyGrades");
+                }
+                return this.myGrades;
+            }
+            set
+            {
+                this.myGrades = value;
+            }
+        }
         public MainWindowViewModel()
         {
             this.Grades.Add(new Grade("1", 1));
@@ -20,9 +37,27 @@ namespace MeineNoten.ViewModel
             this.Grades.Add(new Grade("4", 4));
             this.Grades.Add(new Grade("5", 5));
             this.Grades.Add(new Grade("6", 6));
-            
 
-            
+            DataSet dataSet = new DataSet();
+            dataSet.ReadXml("MeineNoten.xml");
+            //dataSet.
+            foreach (DataTable table in dataSet.Tables)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                       MyGrades.Add(row["Note"].ToString());
+                    //Console.WriteLine(row["Note"].ToString());
+                    //foreach (DataColumn column in table.Columns)
+                    //{
+                    //    Console.WriteLine(row[column]);
+                    //}
+                }
+            }
+
+            //this.myGrades.Add();
+
+
+
         }
 
         private ObservableCollection<Grade> grades;

@@ -22,6 +22,13 @@
         <Label Content="Anwendungsentwicklung und Programmierung"
                Grid.Column="0"
                Grid.Row="0"/>
+        <ComboBox 
+            DataContext="{Binding}" 
+            ItemsSource="{Binding MyGrades}"
+               Grid.Column="0"
+               Grid.Row="0"
+               VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"/>
         <Label Content="0"
                HorizontalAlignment="Right"
                Grid.Column="0"
@@ -31,7 +38,9 @@
                   ItemsSource="{Binding Grades}"
                   SelectedItem="{Binding SelectedItem}"
                   DisplayMemberPath="Title"
-                  SelectedValuePath="Value" Margin="368,48,5,0"/>
+                  SelectedValuePath="Value" 
+                  VerticalAlignment="Bottom"
+                  HorizontalAlignment="Right"/>
         <Button Content="Eintragen" 
                 Click="Eintragen_Click"
                     Height="22" 
