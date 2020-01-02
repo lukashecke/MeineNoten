@@ -49,6 +49,7 @@ namespace MeineNoten
             InitializeComponent();
 
             LoadData();
+           
         }
         
         private void Eintragen_Click(object sender, RoutedEventArgs e)
@@ -65,7 +66,16 @@ namespace MeineNoten
         {
             dataSet = new DataSet();
             dataSet = data.Database;
+            try
+            {
+
             dataSet.ReadXml("MeineNoten.xml");
+            }
+            catch (Exception)
+            {
+
+               
+            }
             data.database = dataSet;
         }
     }
