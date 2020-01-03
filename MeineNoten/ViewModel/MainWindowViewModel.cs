@@ -30,6 +30,7 @@ namespace MeineNoten.ViewModel
                 this.myGrades = value;
             }
         }
+        DataSet dataSet = new DataSet();
         public MainWindowViewModel()
         {
             this.Grades.Add(new Grade("1", 1));
@@ -39,10 +40,11 @@ namespace MeineNoten.ViewModel
             this.Grades.Add(new Grade("5", 5));
             this.Grades.Add(new Grade("6", 6));
 
-            DataSet dataSet = new DataSet();
+
             try
             {
                 dataSet.ReadXml("MeineNoten.xml");
+                XmlFormatCheck();
             }
             catch (Exception)
             {
@@ -53,7 +55,7 @@ namespace MeineNoten.ViewModel
             {
                 foreach (DataRow row in table.Rows)
                 {
-                       MyGrades.Add(row["Note"].ToString());
+                    MyGrades.Add(row["Note"].ToString());
                 }
             }
             double grade = 0;
@@ -62,39 +64,77 @@ namespace MeineNoten.ViewModel
             {
                 foreach (DataRow row in table.Rows)
                 {
-                    try
-                        {
-                        grade += ((Double.Parse(row["Note"].ToString())) * (Int16.Parse(row["Gewichtung"].ToString())));
-                        amountOfGrades+= (Int16.Parse(row["Gewichtung"].ToString()));
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("Gesamtnote konnte nicht ermittelt werden." + Environment.NewLine + "Überprüfen sie die XML-Datei auf Fehler.", "Beschädigte Daten");
-                        // Damit TotalGrade auch 0...
-                        grade = 0; 
-                        break;
-                        }
+
+                    grade += ((Double.Parse(row["Note"].ToString())) * (Int16.Parse(row["Gewichtung"].ToString())));
+                    amountOfGrades += (Int16.Parse(row["Gewichtung"].ToString()));
+
                 }
             }
             grade /= amountOfGrades;
-            try
-            {
+
 #warning Gesamtnote änder sich erst bei Programmstart
 
-                this.totalGrade = GesamtnoteAnpassen(grade);
-            }
-            catch (Exception)
+            this.totalGrade = GesamtnoteAnpassen(grade);
+
+        }
+
+        private void XmlFormatCheck()
+        {
+            foreach (DataTable table in dataSet.Tables)
             {
-                this.totalGrade = "initializing";
-                MessageBox.Show("Gesamtnote konnte nicht ermittelt werden." + Environment.NewLine + "Überprüfen sie die XML-Datei auf Fehler.", "Beschädigte Daten");
+                foreach (DataRow row in table.Rows)
+                {
+                    try
+                    {
+                        // Gültige Noten
+                        if ((Double.Parse(row["Note"].ToString()) > 0) && (Double.Parse(row["Note"].ToString()) < 7))
+                        {
+
+                        }
+                        else
+                        {
+                            throw new Exception("Note");
+                        }
+
+                        // Gültige Gewichtungen
+                        Int16.Parse(row["Gewichtung"].ToString());
+
+                        // Gültiges Fach
+                        if ((row["Fach"].ToString()).Equals("Anwendungsentwicklung und Programmierung") ||
+                            (row["Fach"].ToString()).Equals("IT-Systeme") ||
+                            (row["Fach"].ToString()).Equals("Vernetzte Systeme") ||
+                            (row["Fach"].ToString()).Equals("Betriebswirtschaftliche Prozesse") ||
+                            (row["Fach"].ToString()).Equals("Sozialkunde") ||
+                            (row["Fach"].ToString()).Equals("Deutsch") ||
+                            (row["Fach"].ToString()).Equals("Englisch") ||
+                            (row["Fach"].ToString()).Equals("Ethik") ||
+                            (row["Fach"].ToString()).Equals("Sport") ||
+                            (row["Fach"].ToString()).Equals("Crimpen und Löten"))
+                        {
+
+                        }
+                        else
+                        {
+                            throw new Exception("Fach");
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Daten konnten nicht vollständig gelesen werden." + Environment.NewLine + "Überprüfen sie die XML-Datei auf Fehler.", "Beschädigte Daten");
+                        // Programm nicht öffnen
+                        Application.Current.Shutdown();
+                        break;
+                    }
+                }
             }
         }
+
         public string GesamtnoteAnpassen(double grade)
         {
-            string retGrade="initializing";
-            if (grade%1==0)
+            string retGrade = "initializing";
+            if (grade % 1 == 0)
             {
-                retGrade = grade.ToString() + ",0";
+                retGrade = grade.ToString() + ",00";
             }
             else
             {
@@ -104,6 +144,11 @@ namespace MeineNoten.ViewModel
                 grade = i;
                 grade /= 100;
                 retGrade = grade.ToString();
+                // Noten mit einer Nachkommastelle eine 0 anhängen
+                if (retGrade.Count() != 4)
+                {
+                    retGrade += "0";
+                }
             }
             return retGrade;
         }
@@ -145,8 +190,8 @@ namespace MeineNoten.ViewModel
         {
             get
             {
-                
-                
+
+
                 return this.totalGrade;
             }
             set
