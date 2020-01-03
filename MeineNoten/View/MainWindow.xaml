@@ -30,24 +30,8 @@
                   Margin="480,40,0,0" 
                   VerticalAlignment="Top" 
                   Width="285"/>
-        <Button Content="Eintragen" 
-                Click="Eintragen_Click"
-                    Height="37" 
-                    Width="105" 
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom" Margin="640,0,47,182"/>
 
         <!--Combobox Text wird nicht angezeigt!-->
-        <ComboBox Text="Note auswählen"
-                  DataContext="{Binding}" 
-                  ItemsSource="{Binding Grades}"
-                  SelectedItem="{Binding SelectedItem}"
-                  DisplayMemberPath="Title"
-                  SelectedValuePath="Value" 
-                  VerticalAlignment="Bottom"
-                  HorizontalAlignment="Right" Margin="0,0,172,182" Height="37" Width="130"/>
         <Label Content="{Binding TotalGrade}" 
                HorizontalAlignment="Left" 
                Height="50" 
@@ -60,6 +44,13 @@
                Margin="480,305,0,0" 
                VerticalAlignment="Top" 
                Width="80"/>
+        <Button Content="Neue Note" 
+                HorizontalAlignment="Left" 
+                Height="40" 
+                Margin="570,265,0,0" 
+                VerticalAlignment="Top" 
+                Width="145"
+                Click="Button_Click"/>
 
     </Grid>
 

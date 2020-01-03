@@ -1,4 +1,5 @@
 ﻿using MeineNoten.Model;
+using MeineNoten.View;
 using MeineNoten.ViewModel;
 using System;
 using System.Collections;
@@ -34,17 +35,7 @@ namespace MeineNoten
 
         Data data = new Data();
         private DataSet dataSet;
-        public DataSet DataSet
-        {
-            get
-            {
-                if (dataSet == null)
-                {
-                    dataSet = new DataSet();
-                }
-                return dataSet;
-            }
-        }
+
 
         private string selection;
         public string Selection
@@ -63,6 +54,7 @@ namespace MeineNoten
             }
         }
 
+
         public MainWindow()
         {
             this.DataContext = new MainWindowViewModel();
@@ -74,22 +66,7 @@ namespace MeineNoten
 
 
 
-        private void Eintragen_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                data.InsertDataRow(Selection, ((MainWindowViewModel)DataContext).SelectedItem.Title, "2", DateTime.Now.ToString(),"Test"); //Wieso Cast hier nötig????
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Bitte erst Note auswehlen.", "Keine Note ausgewählt");
-            }
 
-            using (DataSet)
-            {
-                DataSet.WriteXml("MeineNoten.xml");
-            }
-        }
 
         private void LoadData()
         {
@@ -111,6 +88,11 @@ namespace MeineNoten
             ListBoxItem lbi = ((sender as ListBox).SelectedItem as ListBoxItem);
             Selection = lbi.Content.ToString();
             listView.ItemsSource = CreateGrades();
+#warning Eingetragene Noten erscheinen erst nach SelectinChange
+            //Vorerst Notlösung für Refreshen
+            DataSet refresh = new DataSet();
+            refresh.ReadXml("MeineNoten.xml");
+            dataSet = refresh;
         }
         private IEnumerable CreateGrades()
         {
@@ -136,6 +118,12 @@ namespace MeineNoten
 
             }
             return list;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NewGradeWindow win2 = new NewGradeWindow();
+            win2.Show();
         }
     }
 }
