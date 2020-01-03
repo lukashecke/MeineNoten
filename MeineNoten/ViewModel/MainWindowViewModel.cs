@@ -47,9 +47,9 @@ namespace MeineNoten.ViewModel
                 dataSet.ReadXml("MeineNoten.xml");
                 XmlFormatCheck();
             }
-            catch (Exception)
+            catch (Exception) // Getriggert bei erststart, weil noch keine XML-Speicher-Datei erstellt
             {
-                // Bei Erststart des Programms wird das Laden hier problemlos übersprungen
+                dataSet.WriteXml("MeineNoten.xml"); //Leere Datei wird angelegt 
             }
             if (!shutdown)// Bei fehlerhafter XML wird das Programm geschlossen und es sollen keine weiteren Schritte gemacht werden
             {
@@ -75,6 +75,7 @@ namespace MeineNoten.ViewModel
 
                     }
                 }
+                // Bei Erststart 0/0 = NaN wird in GesamtnoteAnpassen abgefangen
                 grade /= amountOfGrades;
 
 #warning Gesamtnote änder sich erst bei Programmstart
@@ -143,7 +144,11 @@ namespace MeineNoten.ViewModel
             {
                 retGrade = grade.ToString() + ",00";
             }
-            else
+            else if (Double.IsNaN(grade))// Bei erststart des Programmes
+            {
+                retGrade = "Noch keine Noten eingetragen!";
+            }
+            else 
             {
                 //runden
                 grade *= 100;
@@ -157,6 +162,7 @@ namespace MeineNoten.ViewModel
                     retGrade += "0";
                 }
             }
+            
             return retGrade;
         }
         private ObservableCollection<Grade> grades;
