@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="Meine Noten" Height="450" Width="800" Background="LightGray">
     <Grid>
+        <!--Das noch als ListView / GridView-->
+        
         <ListBox HorizontalAlignment="Left" 
              Height="342" 
              Margin="41,40,0,0" 
@@ -24,12 +26,21 @@
             <ListBoxItem>Sport</ListBoxItem>
             <ListBoxItem>Crimpen und Löten</ListBoxItem>
         </ListBox>
+        
         <ListView Name="listView"
                   HorizontalAlignment="Left" 
                   Height="155" 
                   Margin="480,40,0,0" 
                   VerticalAlignment="Top" 
-                  Width="285"/>
+                  Width="285">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Beschreibung" Width="120" DisplayMemberBinding="{Binding Art}" />
+                    <GridViewColumn Header="Datum" Width="100" DisplayMemberBinding="{Binding Date}" />
+                    <GridViewColumn Header="Note" Width="50" DisplayMemberBinding="{Binding Note}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
 
         <!--Combobox Text wird nicht angezeigt!-->
         <Label Content="{Binding TotalGrade}" 

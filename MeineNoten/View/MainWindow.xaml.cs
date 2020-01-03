@@ -85,6 +85,7 @@ namespace MeineNoten
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             ListBoxItem lbi = ((sender as ListBox).SelectedItem as ListBoxItem);
             Selection = lbi.Content.ToString();
             listView.ItemsSource = CreateGrades();
@@ -96,7 +97,7 @@ namespace MeineNoten
         }
         private IEnumerable CreateGrades()
         {
-            List<String> list = new List<String>();
+            List<Grade> list = new List<Grade>();
             foreach (DataTable table in dataSet.Tables)
             {
                 foreach (DataRow row in table.Rows)
@@ -105,8 +106,9 @@ namespace MeineNoten
                     {
                         try
                         {
-                            //list.Add("Note: "+row["Note"].ToString() + " " + "Gewichtung: " + row["Gewichtung"].ToString() + " " + "Datum: " + row["Datum"].ToString());
-                            list.Add(row["Art"].ToString()+" "+ row["Datum"].ToString()+" Note: "+ row["Note"].ToString() + " (Gew.: " + row["Gewichtung"].ToString() + ")");
+                            list.Add(new Grade(row["Fach"].ToString(), row["Art"].ToString(), row["Datum"].ToString(), row["Note"].ToString(), row["Gewichtung"].ToString()));
+                            ////list.Add("Note: "+row["Note"].ToString() + " " + "Gewichtung: " + row["Gewichtung"].ToString() + " " + "Datum: " + row["Datum"].ToString());
+                            //list.Add(row["Art"].ToString()+" "+ row["Datum"].ToString()+" Note: "+ row["Note"].ToString() + " (Gew.: " + row["Gewichtung"].ToString() + ")");
                         }
                         catch (Exception)
                         {

@@ -13,10 +13,23 @@ namespace MeineNoten.Model
             this.Title = text;
             this.Value = value;
         }
-
+        public Grade(string fach, string art, string date, string note, string gewichtung)
+        {
+            this.Fach = fach;
+            this.Art = art;
+            this.Date = date;
+            this.Note = note;
+            this.Gewichtung = gewichtung;
+        }
         public int Value { get; set; }
 
         public String Title { get; set; }
-        public DateTime Date { get; set; }
+
+
+        public string Fach { get; set; }
+        public string Art { get; set; }
+        public string Date { get; set; }
+        public string Note { get; set; }
+        public string Gewichtung { get; set; }
     }
 }
