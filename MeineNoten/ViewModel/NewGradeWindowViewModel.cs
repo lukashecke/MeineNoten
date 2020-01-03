@@ -77,8 +77,9 @@ namespace MeineNoten.ViewModel
 
             }
         }
-        private string selectedDate;
-        public string SelectedDate
+        // So ist der Kalender immer schon schön auf den heutigen Tag gestellt
+        private DateTime selectedDate=DateTime.Now;
+        public DateTime SelectedDate
         {
             get
             {

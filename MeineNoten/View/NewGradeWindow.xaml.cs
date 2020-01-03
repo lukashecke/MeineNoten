@@ -51,12 +51,13 @@ namespace MeineNoten.View
             {
                 Check(((NewGradeWindowViewModel)DataContext).SelectedSubject,
                     ((NewGradeWindowViewModel)DataContext).SelectedGrade,
-                    ((NewGradeWindowViewModel)DataContext).SelectedDate,
+                    ((NewGradeWindowViewModel)DataContext).SelectedDate.ToString(),
                     ((NewGradeWindowViewModel)DataContext).Art);
+
                 data.InsertDataRow(((NewGradeWindowViewModel)DataContext).SelectedSubject, 
                     ((NewGradeWindowViewModel)DataContext).SelectedGrade, 
                     ToWeight(((NewGradeWindowViewModel)DataContext).SelectedWeighting), 
-                    ((NewGradeWindowViewModel)DataContext).SelectedDate, 
+                    DateTimeToDateString(((NewGradeWindowViewModel)DataContext).SelectedDate), 
                     ((NewGradeWindowViewModel)DataContext).Art);
                 using (DataSet)
                 {
@@ -108,6 +109,11 @@ namespace MeineNoten.View
             {
                 return "1";
             }
+        }
+
+        private string DateTimeToDateString(DateTime dateTime)
+        {
+            return $"{dateTime.Day}.{dateTime.Month}.{dateTime.Year}";
         }
     }
 }

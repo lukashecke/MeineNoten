@@ -16,7 +16,8 @@
                   ItemsSource="{Binding Grades}"
                   SelectedItem="{Binding SelectedGrade}"
             HorizontalAlignment="Left" Height="25" Margin="210,110,0,0" VerticalAlignment="Top" Width="85"/>
-        <DatePicker SelectedDate="{Binding SelectedDate}"
+        <DatePicker 
+            SelectedDate="{Binding SelectedDate}"
             HorizontalAlignment="Left" Height="25" Margin="35,165,0,0" VerticalAlignment="Top" Width="150"/>
         <TextBox Text="{Binding Art}"
             HorizontalAlignment="Left" Height="20" Margin="20,96,0,0" 
