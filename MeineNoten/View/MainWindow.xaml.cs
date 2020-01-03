@@ -119,7 +119,6 @@ namespace MeineNoten
             {
                 foreach (DataRow row in table.Rows)
                 {
-#warning fehlerhafter Fachname in XML keine Fehlermeldung!
                     if (row["Fach"].ToString().Equals(Selection))
                     {
                         try

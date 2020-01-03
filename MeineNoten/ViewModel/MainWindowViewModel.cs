@@ -13,6 +13,7 @@ namespace MeineNoten.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        bool shutdown = false;
         private ObservableCollection<String> myGrades;
         public ObservableCollection<String> MyGrades
         {
@@ -50,32 +51,37 @@ namespace MeineNoten.ViewModel
             {
                 // Bei Erststart des Programms wird das Laden hier problemlos übersprungen
             }
-            int amountOfGrades = 0;
-            foreach (DataTable table in dataSet.Tables)
+            if (!shutdown)// Bei fehlerhafter XML wird das Programm geschlossen und es sollen keine weiteren Schritte gemacht werden
             {
-                foreach (DataRow row in table.Rows)
+
+
+                int amountOfGrades = 0;
+                foreach (DataTable table in dataSet.Tables)
                 {
-                    MyGrades.Add(row["Note"].ToString());
+                    foreach (DataRow row in table.Rows)
+                    {
+                        MyGrades.Add(row["Note"].ToString());
+                    }
                 }
-            }
-            double grade = 0;
+                double grade = 0;
 
-            foreach (DataTable table in dataSet.Tables)
-            {
-                foreach (DataRow row in table.Rows)
+                foreach (DataTable table in dataSet.Tables)
                 {
+                    foreach (DataRow row in table.Rows)
+                    {
 
-                    grade += ((Double.Parse(row["Note"].ToString())) * (Int16.Parse(row["Gewichtung"].ToString())));
-                    amountOfGrades += (Int16.Parse(row["Gewichtung"].ToString()));
+                        grade += ((Double.Parse(row["Note"].ToString())) * (Int16.Parse(row["Gewichtung"].ToString())));
+                        amountOfGrades += (Int16.Parse(row["Gewichtung"].ToString()));
 
+                    }
                 }
-            }
-            grade /= amountOfGrades;
+                grade /= amountOfGrades;
 
 #warning Gesamtnote änder sich erst bei Programmstart
 
-            this.totalGrade = GesamtnoteAnpassen(grade);
+                this.totalGrade = GesamtnoteAnpassen(grade);
 
+            }
         }
 
         private void XmlFormatCheck()
@@ -121,8 +127,9 @@ namespace MeineNoten.ViewModel
                     catch (Exception)
                     {
                         MessageBox.Show("Daten konnten nicht vollständig gelesen werden." + Environment.NewLine + "Überprüfen sie die XML-Datei auf Fehler.", "Beschädigte Daten");
-                        // Programm nicht öffnen
+                        // Programm "nicht öffnen"
                         Application.Current.Shutdown();
+                        shutdown = true;
                         break;
                     }
                 }
