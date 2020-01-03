@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MeineNoten.ViewModel
 {
@@ -47,7 +48,7 @@ namespace MeineNoten.ViewModel
             {
                 // Bei Erststart des Programms wird das Laden hier problemlos übersprungen
             }
-
+            int amountOfGrades = 0;
             foreach (DataTable table in dataSet.Tables)
             {
                 foreach (DataRow row in table.Rows)
@@ -55,8 +56,57 @@ namespace MeineNoten.ViewModel
                        MyGrades.Add(row["Note"].ToString());
                 }
             }
-        }
+            double grade = 0;
 
+            foreach (DataTable table in dataSet.Tables)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    try
+                        {
+                        grade += ((Double.Parse(row["Note"].ToString())) * (Int16.Parse(row["Gewichtung"].ToString())));
+                        amountOfGrades+= (Int16.Parse(row["Gewichtung"].ToString()));
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Gesamtnote konnte nicht ermittelt werden." + Environment.NewLine + "Überprüfen sie die XML-Datei auf Fehler.", "Beschädigte Daten");
+                        // Damit TotalGrade auch 0...
+                        grade = 0; 
+                        break;
+                        }
+                }
+            }
+            grade /= amountOfGrades;
+            try
+            {
+#warning Gesamtnote änder sich erst bei Programmstart
+
+                this.totalGrade = GesamtnoteAnpassen(grade);
+            }
+            catch (Exception)
+            {
+                this.totalGrade = "initializing";
+                MessageBox.Show("Gesamtnote konnte nicht ermittelt werden." + Environment.NewLine + "Überprüfen sie die XML-Datei auf Fehler.", "Beschädigte Daten");
+            }
+        }
+        public string GesamtnoteAnpassen(double grade)
+        {
+            string retGrade="initializing";
+            if (grade%1==0)
+            {
+                retGrade = grade.ToString() + ",0";
+            }
+            else
+            {
+                //runden
+                grade *= 100;
+                int i = (int)grade;
+                grade = i;
+                grade /= 100;
+                retGrade = grade.ToString();
+            }
+            return retGrade;
+        }
         private ObservableCollection<Grade> grades;
         public ObservableCollection<Grade> Grades
         {
@@ -90,8 +140,8 @@ namespace MeineNoten.ViewModel
             }
         }
 
-        private Grade totalGrade;
-        public Grade TotalGrade
+        private string totalGrade;
+        public string TotalGrade
         {
             get
             {

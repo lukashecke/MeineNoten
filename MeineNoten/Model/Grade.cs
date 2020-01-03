@@ -17,5 +17,6 @@ namespace MeineNoten.Model
         public int Value { get; set; }
 
         public String Title { get; set; }
+        public DateTime Date { get; set; }
     }
 }

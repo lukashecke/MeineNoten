@@ -71,34 +71,19 @@ namespace MeineNoten
             LoadData();
         }
 
-        private IEnumerable CreateGrades()
-        {
-            List<double> list = new List<double>();
-            foreach (DataTable table in dataSet.Tables)
-            {
-                foreach (DataRow row in table.Rows)
-                {
-                    if (row["Fach"].ToString().Equals(Selection))
-                    {
-                        try
-                        {
-                            list.Add(Double.Parse(row["Note"].ToString()));
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("Datensatz konnte nicht vollständig geladen wedern." + Environment.NewLine +"Überprüfen sie die XML-Datei auf Fehler.","Beschädigte Daten");
-                        }
-                        
-                    }
-                }
-            }
-            return list;
-        }
+
 
 
         private void Eintragen_Click(object sender, RoutedEventArgs e)
         {
-            data.InsertDataRow(Selection,((MainWindowViewModel)DataContext).SelectedItem.Title, "0"); //Wieso Cast hier nötig????
+            try
+            {
+                data.InsertDataRow(Selection,((MainWindowViewModel)DataContext).SelectedItem.Title, "2", DateTime.Now.ToString()); //Wieso Cast hier nötig????
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Bitte erst Note auswehlen.", "Keine Note ausgewählt");
+            }
 
             using (DataSet)
             {
@@ -126,6 +111,31 @@ namespace MeineNoten
             ListBoxItem lbi = ((sender as ListBox).SelectedItem as ListBoxItem);
             Selection = lbi.Content.ToString();
             listView.ItemsSource = CreateGrades();
+        }
+        private IEnumerable CreateGrades()
+        {
+            List<double> list = new List<double>();
+            foreach (DataTable table in dataSet.Tables)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+#warning fehlerhafter Fachname in XML keine Fehlermeldung!
+                    if (row["Fach"].ToString().Equals(Selection))
+                    {
+                        try
+                        {
+                            list.Add(Double.Parse(row["Note"].ToString()));
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Datensatz konnte nicht vollständig geladen wedern." + Environment.NewLine + "Überprüfen sie die XML-Datei auf Fehler.", "Beschädigte Daten");
+                        }
+                    }
+
+                }
+                
+            }
+            return list;
         }
     }
 }

@@ -32,13 +32,14 @@ namespace MeineNoten
             Database.Tables.Add(dataTable);
         }
 
-        public DataRow InsertDataRow(String fach, String note, String gewichtung)
+        public DataRow InsertDataRow(String fach, String note, String gewichtung, String date)
         {
 
             var dataRow = this.dataTable.NewRow();
             dataRow["Fach"] = fach;
             dataRow["Note"] = note;
             dataRow["Gewichtung"] = gewichtung;
+            dataRow["Datum"] = date;
             this.dataTable.Rows.Add(dataRow);
 
             return dataRow;
@@ -46,10 +47,11 @@ namespace MeineNoten
 
         public DataTable CreateTable()
         {
-            this.dataTable = new DataTable("DataTable");
+            this.dataTable = new DataTable("Noteninfo");
             dataTable.Columns.Add("Fach");
             dataTable.Columns.Add("Note");
             dataTable.Columns.Add("Gewichtung");
+            dataTable.Columns.Add("Datum");
 
             return dataTable;
         }

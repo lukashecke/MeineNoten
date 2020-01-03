@@ -26,7 +26,7 @@
         </ListBox>
         <ListView Name="listView"
                   HorizontalAlignment="Left" 
-                  Height="280" 
+                  Height="155" 
                   Margin="480,40,0,0" 
                   VerticalAlignment="Top" 
                   Width="285"/>
@@ -37,7 +37,7 @@
                     Grid.Column="0"
                     Grid.Row="0"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom" Margin="640,0,47,37"/>
+                    VerticalAlignment="Bottom" Margin="640,0,47,182"/>
         <ComboBox 
                   DataContext="{Binding}" 
                   ItemsSource="{Binding Grades}"
@@ -45,7 +45,19 @@
                   DisplayMemberPath="Title"
                   SelectedValuePath="Value" 
                   VerticalAlignment="Bottom"
-                  HorizontalAlignment="Right" Margin="0,0,182,37" Height="37" Width="130"/>
+                  HorizontalAlignment="Right" Margin="0,0,172,182" Height="37" Width="130"/>
+        <Label Content="{Binding TotalGrade}" 
+               HorizontalAlignment="Left" 
+               Height="50" 
+               Margin="560,305,0,0" 
+               VerticalAlignment="Top" 
+               Width="142"/>
+        <Label Content="Gesamtnote: " 
+               HorizontalAlignment="Left" 
+               Height="45" 
+               Margin="480,305,0,0" 
+               VerticalAlignment="Top" 
+               Width="80"/>
 
     </Grid>
 
