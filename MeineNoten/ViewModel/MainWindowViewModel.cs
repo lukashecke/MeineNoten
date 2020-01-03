@@ -78,7 +78,7 @@ namespace MeineNoten.ViewModel
                 // Bei Erststart 0/0 = NaN wird in GesamtnoteAnpassen abgefangen
                 grade /= amountOfGrades;
 
-#warning Gesamtnote änder sich erst bei Programmstart
+#warning Zeugnisnote ändert sich erst bei Programmstart
 
                 this.totalGrade = GesamtnoteAnpassen(grade);
 
@@ -148,7 +148,7 @@ namespace MeineNoten.ViewModel
             {
                 retGrade = "Noch keine Noten eingetragen!";
             }
-            else 
+            else
             {
                 //runden
                 grade *= 100;
@@ -162,7 +162,7 @@ namespace MeineNoten.ViewModel
                     retGrade += "0";
                 }
             }
-            
+
             return retGrade;
         }
         private ObservableCollection<Grade> grades;

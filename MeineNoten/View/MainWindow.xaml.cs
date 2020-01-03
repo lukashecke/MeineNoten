@@ -31,7 +31,7 @@ namespace MeineNoten
     /// </summary>
     public partial class MainWindow : Window
     {
-     
+
         Data data = new Data();
         private DataSet dataSet;
         public DataSet DataSet
@@ -78,7 +78,7 @@ namespace MeineNoten
         {
             try
             {
-                data.InsertDataRow(Selection,((MainWindowViewModel)DataContext).SelectedItem.Title, "2", DateTime.Now.ToString()); //Wieso Cast hier nötig????
+                data.InsertDataRow(Selection, ((MainWindowViewModel)DataContext).SelectedItem.Title, "2", DateTime.Now.ToString(),"Test"); //Wieso Cast hier nötig????
             }
             catch (Exception)
             {
@@ -114,7 +114,7 @@ namespace MeineNoten
         }
         private IEnumerable CreateGrades()
         {
-            List<double> list = new List<double>();
+            List<String> list = new List<String>();
             foreach (DataTable table in dataSet.Tables)
             {
                 foreach (DataRow row in table.Rows)
@@ -123,7 +123,8 @@ namespace MeineNoten
                     {
                         try
                         {
-                            list.Add(Double.Parse(row["Note"].ToString()));
+                            //list.Add("Note: "+row["Note"].ToString() + " " + "Gewichtung: " + row["Gewichtung"].ToString() + " " + "Datum: " + row["Datum"].ToString());
+                            list.Add(row["Art"].ToString()+" "+ row["Datum"].ToString()+" Note: "+ row["Note"].ToString() + " (Gew.: " + row["Gewichtung"].ToString() + ")");
                         }
                         catch (Exception)
                         {
@@ -132,7 +133,7 @@ namespace MeineNoten
                     }
 
                 }
-                
+
             }
             return list;
         }
