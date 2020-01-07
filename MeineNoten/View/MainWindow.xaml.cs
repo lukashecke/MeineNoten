@@ -102,9 +102,8 @@ namespace MeineNoten
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            ListBoxItem lbi = ((sender as ListBox).SelectedItem as ListBoxItem);
-            Selection = lbi.Content.ToString();
+            Grade selectedGrade = (Grade)((sender as ListView).SelectedItem);
+            Selection = selectedGrade.Fach.ToString();
             listView.ItemsSource = CreateGrades();
 #warning Eingetragene Noten erscheinen erst nach SelectinChange
             //Vorerst Notlösung für Refreshen

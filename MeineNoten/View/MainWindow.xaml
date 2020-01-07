@@ -9,24 +9,24 @@
         ResizeMode="NoResize">
     <Grid>
         <!--Das noch als ListView / GridView-->
-
-        <ListBox HorizontalAlignment="Left" 
+        <ListView Name="TotalGradesListView"
+            HorizontalAlignment="Left" 
              Height="342" 
              Margin="41,40,0,0" 
              VerticalAlignment="Top" 
-             Width="319"
-             SelectionChanged="ListBox_SelectionChanged">
-            <ListBoxItem>Anwendungsentwicklung und Programmierung</ListBoxItem>
-            <ListBoxItem>IT-Systeme</ListBoxItem>
-            <ListBoxItem>Vernetzte Systeme</ListBoxItem>
-            <ListBoxItem>Betriebswirtschaftliche Prozesse</ListBoxItem>
-            <ListBoxItem>Sozialkunde</ListBoxItem>
-            <ListBoxItem>Deutsch</ListBoxItem>
-            <ListBoxItem>Englisch</ListBoxItem>
-            <ListBoxItem>Ethik</ListBoxItem>
-            <ListBoxItem>Sport</ListBoxItem>
-            <ListBoxItem>Crimpen und Löten</ListBoxItem>
-        </ListBox>
+             Width="Auto"
+                  ItemsSource="{Binding TotalGrades}"
+                  SelectionChanged="ListBox_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Fach" 
+                                    Width="280" DisplayMemberBinding="{Binding Fach}" />
+                    <GridViewColumn Header="Ø" Width="40" DisplayMemberBinding="{Binding  Note}" />
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
 
         <ListView 
             SelectionChanged="ListView_SelectionChanged"
@@ -78,185 +78,4 @@
             Click="Button_Click_Delete"/>
 
     </Grid>
-
-
-
-
-    <!--<Grid HorizontalAlignment="Left" 
-          Height="325" 
-          Margin="31,53,0,0" 
-          VerticalAlignment="Top" 
-          Width="519"
-          ShowGridLines="True">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Label Content="Anwendungsentwicklung und Programmierung"
-               Grid.Column="0"
-               Grid.Row="0"/>
-        <Label Content="IT-Systeme"
-               Grid.Column="0"
-               Grid.Row="1"/>
-        <Label Content="Vernetzte Systeme"
-               Grid.Column="0"
-               Grid.Row="2"/>
-        <Label Content="Betriebswirtschaftliche Prozesse"
-               Grid.Column="0"
-               Grid.Row="3"/>
-        <Label Content="Sozialkunde"
-               Grid.Column="0"
-               Grid.Row="4"/>
-        <Label Content="Deutsch"
-               Grid.Column="0"
-               Grid.Row="5"/>
-        <Label Content="Englisch"
-               Grid.Column="0"
-               Grid.Row="6"/>
-        <Label Content="Ethik"
-               Grid.Column="0"
-               Grid.Row="7"/>
-        <Label Content="Sport"
-               Grid.Column="0"
-               Grid.Row="8"/>
-        <Label Content="Crimpen und Löten"
-               Grid.Column="0"
-               Grid.Row="9"/>
-    </Grid>-->
-
-
-
-
-
-    <!--<Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Label Content="Anwendungsentwicklung und Programmierung"
-               Grid.Column="0"
-               Grid.Row="0"/>
-        <ComboBox 
-            DataContext="{Binding}" 
-            ItemsSource="{Binding MyGrades}"
-               Grid.Column="0"
-               Grid.Row="0"
-               VerticalAlignment="Bottom"
-            HorizontalAlignment="Left"/>
-        <Label Content="0"
-               HorizontalAlignment="Right"
-               Grid.Column="0"
-               Grid.Row="0"/>
-        <ComboBox 
-                  DataContext="{Binding}" 
-                  ItemsSource="{Binding Grades}"
-                  SelectedItem="{Binding SelectedItem}"
-                  DisplayMemberPath="Title"
-                  SelectedValuePath="Value" 
-                  VerticalAlignment="Bottom"
-                  HorizontalAlignment="Right"/>
-        <Button Content="Eintragen" 
-                Click="Eintragen_Click"
-                    Height="22" 
-                    Width="53" 
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom" Margin="310,0,33,0"/>
-
-        <Label Content="IT-Systeme"
-               Grid.Column="0"
-               Grid.Row="1"/>
-        <Label Content="0"
-               HorizontalAlignment="Right"
-               Grid.Column="0"
-               Grid.Row="1"/>
-        <Label Content="Vernetzte Systeme"
-               Grid.Column="0"
-               Grid.Row="2"/>
-        <Label Content="0"
-               HorizontalAlignment="Right"
-               Grid.Column="0"
-               Grid.Row="2"/>
-        <Label Content="Betriebswirtschaftliche Prozesse"
-               Grid.Column="0"
-               Grid.Row="3"/>
-        <Label Content="0"
-               HorizontalAlignment="Right"
-               Grid.Column="0"
-               Grid.Row="3"/>
-        <Label Content="0"
-               HorizontalAlignment="Right"
-               Grid.Column="0"
-               Grid.Row="4"/>
-        <Label Content="Sozialkunde"
-               Grid.Column="0"
-               Grid.Row="4"/>
-        <Label Content="0"
-               HorizontalAlignment="Right"
-               Grid.Column="1"
-               Grid.Row="0"/>
-        <Label Content="Deutsch"
-               Grid.Column="1"
-               Grid.Row="0"/>
-        <Label Content="0"
-               HorizontalAlignment="Right"
-               Grid.Column="1"
-               Grid.Row="1"/>
-        <Label Content="Englisch"
-               Grid.Column="1"
-               Grid.Row="1"/>
-        <Label Content="0"
-               HorizontalAlignment="Right"
-               Grid.Column="1"
-               Grid.Row="2"/>
-        <Label Content="Ethik"
-               Grid.Column="1"
-               Grid.Row="2"/>
-        <Label Content="0"
-               HorizontalAlignment="Right"
-               Grid.Column="1"
-               Grid.Row="3"/>
-        <Label Content="Sport"
-               Grid.Column="1"
-               Grid.Row="3"/>
-        <Label Content="Crimpen und Löten"
-               Grid.Column="1"
-               Grid.Row="4"/>
-        <Label Content="0"
-               HorizontalAlignment="Right"
-               Grid.Column="1"
-               Grid.Row="4"/>
-        <Label Content="Gesamtnote"
-               HorizontalAlignment="Center"
-               Grid.Column="0"
-               Grid.Row="5"
-               Grid.ColumnSpan="2"/>
-        <Label Content="{Binding TotalGrade}"
-               HorizontalAlignment="center"
-               VerticalAlignment="Center"
-               Grid.Column="0"
-               Grid.Row="5"
-               Grid.ColumnSpan="2"/>
-    </Grid>-->
 </Window>

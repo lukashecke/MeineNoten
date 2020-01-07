@@ -41,6 +41,18 @@ namespace MeineNoten.ViewModel
             this.Grades.Add(new Grade("5", 5));
             this.Grades.Add(new Grade("6", 6));
 
+            this.TotalGrades.Add(new Grade("Anwendungsentwicklung und Programmierung", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1"));
+            this.TotalGrades.Add(new Grade("IT-Systeme", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1"));
+            this.TotalGrades.Add(new Grade("Vernetzte Systeme", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1"));
+            this.TotalGrades.Add(new Grade("Betriebswirtschaftliche Prozesse", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1"));
+            this.TotalGrades.Add(new Grade("Sozialkunde", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1"));
+            this.TotalGrades.Add(new Grade("Deutsch", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1"));
+            this.TotalGrades.Add(new Grade("Englisch", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1"));
+            this.TotalGrades.Add(new Grade("Ethik", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1"));
+            this.TotalGrades.Add(new Grade("Sport", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1"));
+            this.TotalGrades.Add(new Grade("Crimpen und Löten", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1"));
+
+            
 
             try
             {
@@ -51,6 +63,7 @@ namespace MeineNoten.ViewModel
             {
                 dataSet.WriteXml("MeineNoten.xml"); //Leere Datei wird angelegt 
             }
+            CalculateTotalGrades();
             if (!shutdown)// Bei fehlerhafter XML wird das Programm geschlossen und es sollen keine weiteren Schritte gemacht werden
             {
 
@@ -81,7 +94,43 @@ namespace MeineNoten.ViewModel
 #warning Zeugnisnote ändert sich erst bei Programmstart
 
                 this.totalGrade = GesamtnoteAnpassen(grade);
+                
+            }
+        }
 
+        private void CalculateTotalGrades()
+        {
+#warning Durchschnittsnote der Fächer falsch berechnet
+            foreach (var item in TotalGrades)
+            {
+                string fach=item.Fach;
+                double temp=0.0;
+                int amountOfGrades = 0;
+                foreach (DataTable table in dataSet.Tables)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        if ((row["Fach"].ToString().Equals(fach)))
+                        {
+                            temp += ((Double.Parse(row["Note"].ToString())) * (Int16.Parse(row["Gewichtung"].ToString())));
+                            amountOfGrades += (Int16.Parse(row["Gewichtung"].ToString()));
+                        }
+                        
+                        
+                        
+
+                    }
+                    temp /= amountOfGrades;
+                }
+                if (Double.IsNaN(temp))
+                {
+                    item.Note = "-";
+                }
+                else
+                {
+
+                item.Note = temp.ToString();
+                }
             }
         }
 
@@ -211,6 +260,27 @@ namespace MeineNoten.ViewModel
             {
                 this.totalGrade = value;
                 this.OnPropertyChanged("TotalGrade");
+
+            }
+        }
+
+        private ObservableCollection<Grade> totalGrades;
+        public ObservableCollection<Grade> TotalGrades
+        {
+            get
+            {
+                if (this.totalGrades == null)
+                {
+                    this.totalGrades = new ObservableCollection<Grade>();
+                    this.OnPropertyChanged("TotalGrades");
+                }
+
+                return this.totalGrades;
+            }
+            set
+            {
+                this.totalGrades = value;
+                this.OnPropertyChanged("TotalGrades");
 
             }
         }
