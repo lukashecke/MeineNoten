@@ -4,26 +4,9 @@ using MeineNoten.ViewModel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Data;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-
-using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml.Serialization;
 
 namespace MeineNoten
 {
@@ -32,11 +15,12 @@ namespace MeineNoten
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        #region fields
         Data data = new Data();
         private DataSet dataSet;
+        #endregion
 
-
+        #region properties
         private Grade gradeSelection;
         public Grade GradeSelection
         {
@@ -53,7 +37,6 @@ namespace MeineNoten
                 this.gradeSelection = value;
             }
         }
-
         private string selection;
         public string Selection
         {
@@ -70,21 +53,19 @@ namespace MeineNoten
                 this.selection = value;
             }
         }
+        #endregion
 
-
+        #region constructors
         public MainWindow()
         {
             this.DataContext = new MainWindowViewModel();
             InitializeComponent();
-            
+
             LoadData();
         }
+        #endregion
 
-
-
-
-
-
+        #region private methods
         private void LoadData()
         {
             dataSet = new DataSet();
@@ -112,6 +93,7 @@ namespace MeineNoten
             dataSet = refresh;
             DeleteButton.Visibility = Visibility.Hidden;
         }
+
         private IEnumerable CreateGrades()
         {
             List<Grade> list = new List<Grade>();
@@ -139,11 +121,19 @@ namespace MeineNoten
             return list;
         }
 
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Grade grade = (Grade)((sender as ListView).SelectedItem);
+            GradeSelection = grade;
+            DeleteButton.Visibility = Visibility.Visible;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NewGradeWindow win2 = new NewGradeWindow(this.Selection);
             win2.Show();
         }
+
 #warning Auch beim Löschen Aktualisierungsprobleme
         private void Button_Click_Delete(object sender, RoutedEventArgs e)
         {
@@ -164,13 +154,6 @@ namespace MeineNoten
                 }
             }
         }
-
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Grade grade = (Grade)((sender as ListView).SelectedItem);
-            GradeSelection = grade;
-            DeleteButton.Visibility = Visibility.Visible;
-        }
-
+        #endregion
     }
 }

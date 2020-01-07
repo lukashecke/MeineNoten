@@ -14,7 +14,7 @@ namespace MeineNoten.ViewModel
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
+            handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

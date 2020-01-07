@@ -10,6 +10,7 @@ namespace MeineNoten.ViewModel
 {
     class NewGradeWindowViewModel : ViewModelBase
     {
+        #region properties
         private ObservableCollection<string> subjects;
         public ObservableCollection<string> Subjects
         {
@@ -29,6 +30,7 @@ namespace MeineNoten.ViewModel
 
             }
         }
+
         private ObservableCollection<string> grades;
         public ObservableCollection<string> Grades
         {
@@ -49,6 +51,7 @@ namespace MeineNoten.ViewModel
             }
 
         }
+
         private string selectedGrade;
         public string SelectedGrade
         {
@@ -63,6 +66,7 @@ namespace MeineNoten.ViewModel
 
             }
         }
+
         private string selectedSubject;
         public string SelectedSubject
         {
@@ -77,8 +81,8 @@ namespace MeineNoten.ViewModel
 
             }
         }
-        // So ist der Kalender immer schon schön auf den heutigen Tag gestellt
-        private DateTime selectedDate=DateTime.Now;
+        
+        private DateTime selectedDate = DateTime.Now; // So ist der Kalender immer schon schön auf den heutigen Tag gestellt
         public DateTime SelectedDate
         {
             get
@@ -92,6 +96,7 @@ namespace MeineNoten.ViewModel
 
             }
         }
+
         private bool selectedWeighting;
         public bool SelectedWeighting
         {
@@ -106,6 +111,7 @@ namespace MeineNoten.ViewModel
 
             }
         }
+
         private string art;
         public string Art
         {
@@ -120,6 +126,9 @@ namespace MeineNoten.ViewModel
 
             }
         }
+        #endregion
+
+        #region constructors
         public NewGradeWindowViewModel()
         {
             this.Subjects.Add("Anwendungsentwicklung und Programmierung");
@@ -139,9 +148,7 @@ namespace MeineNoten.ViewModel
             this.Grades.Add("4");
             this.Grades.Add("5");
             this.Grades.Add("6");
-            
         }
-        
-
+        #endregion
     }
 }

@@ -9,6 +9,11 @@ namespace MeineNoten
 {
     public class Data
     {
+        #region fields
+        public DataTable dataTable = new DataTable();
+        #endregion
+
+        #region properties
         public DataSet database;
         public DataSet Database
         {
@@ -18,23 +23,22 @@ namespace MeineNoten
                 {
                     database = new DataSet("MeineNoten");
                 }
-
                 return database;
             }
         }
+        #endregion
 
-        public DataTable dataTable=new DataTable();
-
-
+        #region constructors
         public Data()
         {
             var dataTable = CreateTable();
             Database.Tables.Add(dataTable);
         }
+        #endregion
 
+        #region public methods
         public DataRow InsertDataRow(String fach, String note, String gewichtung, String date, String art)
         {
-
             var dataRow = this.dataTable.NewRow();
             dataRow["Fach"] = fach;
             dataRow["Note"] = note;
@@ -57,5 +61,6 @@ namespace MeineNoten
 
             return dataTable;
         }
+        #endregion
     }
 }
