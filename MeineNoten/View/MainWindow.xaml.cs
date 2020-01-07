@@ -37,6 +37,23 @@ namespace MeineNoten
         private DataSet dataSet;
 
 
+        private Grade gradeSelection;
+        public Grade GradeSelection
+        {
+            get
+            {
+                if (gradeSelection == null)
+                {
+                    // gradeSelection = new Grade("null",0) ;
+                }
+                return gradeSelection;
+            }
+            set
+            {
+                this.gradeSelection = value;
+            }
+        }
+
         private string selection;
         public string Selection
         {
@@ -59,7 +76,7 @@ namespace MeineNoten
         {
             this.DataContext = new MainWindowViewModel();
             InitializeComponent();
-
+            
             LoadData();
         }
 
@@ -94,6 +111,7 @@ namespace MeineNoten
             DataSet refresh = new DataSet();
             refresh.ReadXml("MeineNoten.xml");
             dataSet = refresh;
+            DeleteButton.Visibility = Visibility.Hidden;
         }
         private IEnumerable CreateGrades()
         {
@@ -127,5 +145,33 @@ namespace MeineNoten
             NewGradeWindow win2 = new NewGradeWindow();
             win2.Show();
         }
+#warning Auch beim Löschen Aktualisierungsprobleme
+        private void Button_Click_Delete(object sender, RoutedEventArgs e)
+        {
+            foreach (DataTable table in dataSet.Tables)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    if (row["Fach"].ToString().Equals(GradeSelection.Fach) &&
+                        row["Note"].ToString().Equals(GradeSelection.Note) &&
+                        row["Gewichtung"].ToString().Equals(GradeSelection.Gewichtung) &&
+                        row["Art"].ToString().Equals(GradeSelection.Art) &&
+                        row["Datum"].ToString().Equals(GradeSelection.Date))
+                    {
+                        row.Delete();
+                        dataSet.WriteXml("MeineNoten.xml");
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Grade grade = (Grade)((sender as ListView).SelectedItem);
+            GradeSelection = grade;
+            DeleteButton.Visibility = Visibility.Visible;
+        }
+
     }
 }

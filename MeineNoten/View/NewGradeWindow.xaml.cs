@@ -122,9 +122,9 @@ namespace MeineNoten.View
             string month = dateTime.Month.ToString();
             string year = dateTime.Year.ToString();
             // Append 0 before Day/ Month 0-9
-            if (day.Count()<2)
+            if (day.Count() < 2)
             {
-                day = "0"+day;
+                day = "0" + day;
             }
             if (month.Count() < 2)
             {
