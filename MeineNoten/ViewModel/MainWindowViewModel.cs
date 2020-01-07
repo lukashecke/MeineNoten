@@ -188,14 +188,27 @@ namespace MeineNoten.ViewModel
                         }
                     }
                     temp /= amountOfGrades;
+                    //runden
+                    temp *= 100;
+                    int i = (int)temp;
+                    temp = i;
+                    temp /= 100;
                 }
-                if (Double.IsNaN(temp))
+                if (Double.IsNaN(temp)||(temp==(-21474836.48))) // -2147...,48 kommt raus bei leeren Noten
                 {
                     item.Note = "-";
                 }
                 else
                 {
                     item.Note = temp.ToString();
+                    // Noten mit Nachkommastellen versorgen
+                    if (item.Note.Count() <2)
+                    {
+                        item.Note += ",00";
+                    } else if (item.Note.Count() <3)
+                    {
+                        item.Note += "0";
+                    }
                 }
             }
         }
