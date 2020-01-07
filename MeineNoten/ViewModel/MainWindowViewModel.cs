@@ -163,12 +163,48 @@ namespace MeineNoten.ViewModel
                 // Bei Erststart 0/0 = NaN wird in GesamtnoteAnpassen abgefangen
 #warning Zeugnisnote ändert sich erst bei Programmstart
                 grade /= amountOfGrades;
-                this.totalGrade = GesamtnoteAnpassen(grade);
+                this.totalGrade = GesamtnoteBerechnen(); //GesamtnoteAnpassen(grade);
             }
         }
         #endregion
 
         #region private methods
+        private string GesamtnoteBerechnen()
+        {
+            string ret;
+            double temp = 0.0;
+            int amount = 0;
+            foreach (var item in TotalGrades)
+            {
+                try
+                {
+                    temp += Double.Parse(item.Note);
+                    amount++;
+                }
+                catch (Exception)
+                {
+                    break; // wenn noch keine Note eingetragen, hier einfach übersprungen
+                }
+            }
+            temp /= amount;
+            //runden
+            temp *= 100;
+            int i = (int)temp;
+            temp = i;
+            temp /= 100;
+            ret = temp.ToString();
+            // Noten mit Nachkommastellen versorgen
+            if (ret.Count() < 2)
+            {
+                ret += ",00";
+            }
+            else if (ret.Count() < 4)
+            {
+                ret += "0";
+            }
+            return ret;
+        }
+
         private void CalculateTotalGrades()
         {
 #warning Durchschnittsnote der Fächer falsch berechnet
@@ -194,7 +230,7 @@ namespace MeineNoten.ViewModel
                     temp = i;
                     temp /= 100;
                 }
-                if (Double.IsNaN(temp)||(temp==(-21474836.48))) // -2147...,48 kommt raus bei leeren Noten
+                if (Double.IsNaN(temp) || (temp == (-21474836.48))) // -2147...,48 kommt raus bei leeren Noten
                 {
                     item.Note = "-";
                 }
@@ -202,10 +238,11 @@ namespace MeineNoten.ViewModel
                 {
                     item.Note = temp.ToString();
                     // Noten mit Nachkommastellen versorgen
-                    if (item.Note.Count() <2)
+                    if (item.Note.Count() < 2)
                     {
                         item.Note += ",00";
-                    } else if (item.Note.Count() <3)
+                    }
+                    else if (item.Note.Count() < 4)
                     {
                         item.Note += "0";
                     }
