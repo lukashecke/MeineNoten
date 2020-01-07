@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeineNoten"
         mc:Ignorable="d"
-        Title="Meine Noten" Height="450" Width="800" Background="LightGray">
+        Title="Meine Noten" Height="450" Width="800" Background="LightGray"
+        ResizeMode="NoResize">
     <Grid>
         <!--Das noch als ListView / GridView-->
         
@@ -35,7 +36,7 @@
                   Width="285">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Beschreibung" Width="120" DisplayMemberBinding="{Binding Art}" />
+                    <GridViewColumn Header="Beschreibung" Width="130" DisplayMemberBinding="{Binding Art}" />
                     <GridViewColumn Header="Datum" Width="100" DisplayMemberBinding="{Binding Date}" />
                     <GridViewColumn Header="Note" Width="50" DisplayMemberBinding="{Binding Note}" />
                 </GridView>

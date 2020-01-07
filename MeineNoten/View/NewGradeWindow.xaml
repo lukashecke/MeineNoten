@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeineNoten.View"
         mc:Ignorable="d"
-        Title="Neue Note" Height="267" Width="384">
+        Title="Neue Note" Height="267" Width="384"
+        ResizeMode="NoResize">
+    <!--ResizeMode="CanMinimize"-->
     <Grid>
         <Label Content="Fach" HorizontalAlignment="Left" Height="30" Margin="20,20,0,0" VerticalAlignment="Top" Width="85"/>
         <Label Content="Beschreibung" HorizontalAlignment="Left" Height="30" Margin="20,75,0,0" VerticalAlignment="Top" Width="85"/>
