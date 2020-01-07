@@ -34,13 +34,18 @@ namespace MeineNoten.View
                 return dataSet;
             }
         }
+        string Selection { get; set; }
 
-        public NewGradeWindow()
+        public NewGradeWindow(string selection)
         {
+            
             this.DataContext = new NewGradeWindowViewModel();
             InitializeComponent();
 
             LoadData();
+
+            this.Selection = selection;
+            ((NewGradeWindowViewModel)DataContext).SelectedSubject = this.Selection;
 
         }
 

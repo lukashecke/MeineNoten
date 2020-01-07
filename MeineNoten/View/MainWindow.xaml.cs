@@ -142,7 +142,7 @@ namespace MeineNoten
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NewGradeWindow win2 = new NewGradeWindow();
+            NewGradeWindow win2 = new NewGradeWindow(this.Selection);
             win2.Show();
         }
 #warning Auch beim Löschen Aktualisierungsprobleme
