@@ -111,9 +111,27 @@ namespace MeineNoten.View
             }
         }
 
+        /// <summary>
+        /// Converts a DateTime objects int to a string with DD.MM.YYYY Format
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
         private string DateTimeToDateString(DateTime dateTime)
         {
-            return $"{dateTime.Day}.{dateTime.Month}.{dateTime.Year}";
+            string day = dateTime.Day.ToString();
+            string month = dateTime.Month.ToString();
+            string year = dateTime.Year.ToString();
+            // Append 0 before Day/ Month 0-9
+            if (day.Count()<2)
+            {
+                day = "0"+day;
+            }
+            if (month.Count() < 2)
+            {
+                month = "0" + day;
+            }
+
+            return $"{day}.{month}.{year}";
         }
     }
 }
