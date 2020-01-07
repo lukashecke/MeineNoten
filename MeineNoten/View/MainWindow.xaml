@@ -40,9 +40,10 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Beschreibung" 
-                                    Width="130" DisplayMemberBinding="{Binding Art}" />
-                    <GridViewColumn Header="Datum" Width="100" DisplayMemberBinding="{Binding Date}" />
-                    <GridViewColumn Header="Note" Width="55" DisplayMemberBinding="{Binding Note}" />
+                                    Width="110" DisplayMemberBinding="{Binding Art}" />
+                    <GridViewColumn Header="Datum" Width="75" DisplayMemberBinding="{Binding Date}" />
+                    <GridViewColumn Header="Note" Width="40" DisplayMemberBinding="{Binding Note}" />
+                    <GridViewColumn Header="Wichtung" Width="60" DisplayMemberBinding="{Binding Gewichtung}" />
                 </GridView>
             </ListView.View>
         </ListView>
