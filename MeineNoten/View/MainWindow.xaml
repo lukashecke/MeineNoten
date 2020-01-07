@@ -9,7 +9,7 @@
         ResizeMode="NoResize">
     <Grid>
         <!--Das noch als ListView / GridView-->
-        
+
         <ListBox HorizontalAlignment="Left" 
              Height="342" 
              Margin="41,40,0,0" 
@@ -27,18 +27,20 @@
             <ListBoxItem>Sport</ListBoxItem>
             <ListBoxItem>Crimpen und Löten</ListBoxItem>
         </ListBox>
-        
+
         <ListView Name="listView"
                   HorizontalAlignment="Left" 
                   Height="155" 
-                  Margin="480,40,0,0" 
+                  Margin="470,40,0,0" 
+                  Padding="0"
                   VerticalAlignment="Top" 
-                  Width="285">
+                  Width="Auto">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Beschreibung" Width="130" DisplayMemberBinding="{Binding Art}" />
+                    <GridViewColumn Header="Beschreibung" 
+                                    Width="130" DisplayMemberBinding="{Binding Art}" />
                     <GridViewColumn Header="Datum" Width="100" DisplayMemberBinding="{Binding Date}" />
-                    <GridViewColumn Header="Note" Width="50" DisplayMemberBinding="{Binding Note}" />
+                    <GridViewColumn Header="Note" Width="55" DisplayMemberBinding="{Binding Note}" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -46,20 +48,20 @@
         <!--Combobox Text wird nicht angezeigt!-->
         <Label Content="{Binding TotalGrade}" 
                HorizontalAlignment="Left" 
-               Height="50" 
-               Margin="560,305,0,0" 
+               Height="43" 
+               Margin="635,339,0,0" 
                VerticalAlignment="Top" 
-               Width="205"/>
+               Width="45"/>
         <Label Content="Zeugnisnote: " 
                HorizontalAlignment="Left" 
-               Height="45" 
-               Margin="480,305,0,0" 
+               Height="39" 
+               Margin="555,339,0,0" 
                VerticalAlignment="Top" 
                Width="80"/>
         <Button Content="Neue Note" 
                 HorizontalAlignment="Left" 
                 Height="40" 
-                Margin="570,265,0,0" 
+                Margin="620,210,0,0" 
                 VerticalAlignment="Top" 
                 Width="145"
                 Click="Button_Click"/>
