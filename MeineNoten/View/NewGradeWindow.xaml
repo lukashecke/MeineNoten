@@ -47,29 +47,29 @@
                   SelectedItem="{Binding SelectedGrade}"
                   HorizontalAlignment="Left" 
                   Height="25" 
-                  Margin="210,113,0,0" 
+                  Margin="215,113,0,0" 
                   VerticalAlignment="Top" 
                   Width="85"/>
         <DatePicker SelectedDate="{Binding SelectedDate}"
                     HorizontalAlignment="Left" 
-                    Height="25" Margin="10,185,0,0" 
+                    Height="25" Margin="15,185,0,0" 
                     VerticalAlignment="Top" 
                     Width="150"/>
         <TextBox Text="{Binding Art}"
                  HorizontalAlignment="Left" 
                  Height="20" 
-                 Margin="10,113,0,0" 
+                 Margin="15,113,0,0" 
                  TextWrapping="Wrap"
                  VerticalAlignment="Top" 
-                 Width="105"/>
+                 Width="150"/>
         <ComboBox DataContext="{Binding}" 
                   ItemsSource="{Binding Subjects}"
                   SelectedItem="{Binding SelectedSubject}"
                   HorizontalAlignment="Left" 
-                  Height="20" 
-                  Margin="10,40,0,0" 
+                  Height="25" 
+                  Margin="15,40,0,0" 
                   VerticalAlignment="Top" 
-                  Width="125"/>
+                  Width="150"/>
         <CheckBox IsChecked="{Binding SelectedWeighting}"
                   Content="x2" 
                   HorizontalAlignment="Left" 
@@ -80,9 +80,9 @@
         <Button Click="Button_Click" 
                 Content="Eintragen" 
                 HorizontalAlignment="Left" 
-                Height="50" 
-                Margin="258,178,0,0" 
+                Height="40" 
+                Margin="215,170,0,0" 
                 VerticalAlignment="Top" 
-                Width="110"/>
+                Width="135"/>
     </Grid>
 </Window>
