@@ -133,7 +133,7 @@ namespace MeineNoten.View
             }
             if (month.Count() < 2)
             {
-                month = "0" + day;
+                month = "0" + month;
             }
 
             return $"{day}.{month}.{year}";
