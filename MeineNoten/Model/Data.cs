@@ -13,7 +13,7 @@ namespace MeineNoten
         public DataTable dataTable = new DataTable();
         #endregion
 
-        #region properties
+        #region entities
         public DataSet database;
         public DataSet Database
         {
@@ -37,7 +37,7 @@ namespace MeineNoten
         #endregion
 
         #region public methods
-        public DataRow InsertDataRow(String fach, String note, String gewichtung, String date, String art)
+        public DataRow InsertDataRow(String fach, String note, String gewichtung, String date, String art, String schuljahr)
         {
             var dataRow = this.dataTable.NewRow();
             dataRow["Fach"] = fach;
@@ -45,6 +45,7 @@ namespace MeineNoten
             dataRow["Gewichtung"] = gewichtung;
             dataRow["Art"] = art;
             dataRow["Datum"] = date;
+            dataRow["Schuljahr"] = schuljahr;
             this.dataTable.Rows.Add(dataRow);
 
             return dataRow;
@@ -58,6 +59,7 @@ namespace MeineNoten
             dataTable.Columns.Add("Gewichtung");
             dataTable.Columns.Add("Art");
             dataTable.Columns.Add("Datum");
+            dataTable.Columns.Add("Schuljahr");
 
             return dataTable;
         }

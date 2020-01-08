@@ -15,7 +15,8 @@ namespace MeineNoten.View
         Data data = new Data();
         #endregion
 
-        #region properties
+        #region entities
+        string SelectedSchoolYear { get; set; }
         string Selection { get; set; }
         private DataSet dataSet;
         public DataSet DataSet
@@ -32,7 +33,7 @@ namespace MeineNoten.View
         #endregion
 
         #region constructors
-        public NewGradeWindow(string selection)
+        public NewGradeWindow(string selection, string selectedSchoolYear)
         {
             this.DataContext = new NewGradeWindowViewModel();
             InitializeComponent();
@@ -41,6 +42,7 @@ namespace MeineNoten.View
 
             this.Selection = selection;
             ((NewGradeWindowViewModel)DataContext).SelectedSubject = this.Selection;
+            this.SelectedSchoolYear = selectedSchoolYear;
         }
         #endregion
 
@@ -58,7 +60,8 @@ namespace MeineNoten.View
                     ((NewGradeWindowViewModel)DataContext).SelectedGrade,
                     ToWeight(((NewGradeWindowViewModel)DataContext).SelectedWeighting),
                     DateTimeToDateString(((NewGradeWindowViewModel)DataContext).SelectedDate),
-                    ((NewGradeWindowViewModel)DataContext).Art);
+                    ((NewGradeWindowViewModel)DataContext).Art,
+                    this.SelectedSchoolYear);
                 using (DataSet)
                 {
                     DataSet.WriteXml("MeineNoten.xml");

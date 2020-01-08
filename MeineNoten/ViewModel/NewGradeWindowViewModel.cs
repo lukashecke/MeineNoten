@@ -10,7 +10,7 @@ namespace MeineNoten.ViewModel
 {
     class NewGradeWindowViewModel : ViewModelBase
     {
-        #region properties
+        #region entities
         private ObservableCollection<string> subjects;
         public ObservableCollection<string> Subjects
         {

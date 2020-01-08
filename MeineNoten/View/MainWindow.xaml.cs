@@ -20,7 +20,7 @@ namespace MeineNoten
         private DataSet dataSet;
         #endregion
 
-        #region properties
+        #region entities
         private Grade gradeSelection;
         public Grade GradeSelection
         {
@@ -83,6 +83,11 @@ namespace MeineNoten
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+            ((MainWindowViewModel)this.DataContext).CalculateTotalGrades();
+            ((MainWindowViewModel)this.DataContext).GesamtnoteBerechnen();
+
+
             Grade selectedGrade = (Grade)((sender as ListView).SelectedItem);
             Selection = selectedGrade.Fach.ToString();
             listView.ItemsSource = CreateGrades();
@@ -92,6 +97,12 @@ namespace MeineNoten
             refresh.ReadXml("MeineNoten.xml");
             dataSet = refresh;
             DeleteButton.Visibility = Visibility.Hidden;
+
+            // ((MainWindowViewModel)this.DataContext).OnPropertyChanged("TotalGrades");
+
+
+
+
         }
 
         private IEnumerable CreateGrades()
@@ -101,13 +112,11 @@ namespace MeineNoten
             {
                 foreach (DataRow row in table.Rows)
                 {
-                    if (row["Fach"].ToString().Equals(Selection))
+                    if (row["Fach"].ToString().Equals(Selection)&& row["Schuljahr"].ToString().Equals(SchoolYearComboBox.SelectedValue))
                     {
                         try
                         {
-                            list.Add(new Grade(row["Fach"].ToString(), row["Art"].ToString(), row["Datum"].ToString(), row["Note"].ToString(), row["Gewichtung"].ToString()));
-                            ////list.Add("Note: "+row["Note"].ToString() + " " + "Gewichtung: " + row["Gewichtung"].ToString() + " " + "Datum: " + row["Datum"].ToString());
-                            //list.Add(row["Art"].ToString()+" "+ row["Datum"].ToString()+" Note: "+ row["Note"].ToString() + " (Gew.: " + row["Gewichtung"].ToString() + ")");
+                            list.Add(new Grade(row["Fach"].ToString(), row["Art"].ToString(), row["Datum"].ToString(), row["Note"].ToString(), row["Gewichtung"].ToString(), row["Schuljahr"].ToString()));
                         }
                         catch (Exception)
                         {
@@ -130,7 +139,7 @@ namespace MeineNoten
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NewGradeWindow win2 = new NewGradeWindow(this.Selection);
+            NewGradeWindow win2 = new NewGradeWindow(this.Selection, ((MainWindowViewModel)DataContext).SelectedSchoolYear);
             win2.Show();
         }
 
@@ -145,7 +154,8 @@ namespace MeineNoten
                         row["Note"].ToString().Equals(GradeSelection.Note) &&
                         row["Gewichtung"].ToString().Equals(GradeSelection.Gewichtung) &&
                         row["Art"].ToString().Equals(GradeSelection.Art) &&
-                        row["Datum"].ToString().Equals(GradeSelection.Date))
+                        row["Datum"].ToString().Equals(GradeSelection.Date) &&
+                        row["Schuljahr"].ToString().Equals(SchoolYearComboBox.SelectedValue))
                     {
                         row.Delete();
                         dataSet.WriteXml("MeineNoten.xml");

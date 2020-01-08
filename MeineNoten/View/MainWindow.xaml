@@ -27,7 +27,7 @@
                                     DisplayMemberBinding="{Binding Fach}" />
                     <GridViewColumn Header="Ø" 
                                     Width="40" 
-                                    DisplayMemberBinding="{Binding  Note}" />
+                                    DisplayMemberBinding="{Binding Note}" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -85,9 +85,15 @@
                 VerticalAlignment="Top" 
                 Width="145"
                 Click="Button_Click_Delete"/>
-        <Label Content="Schuljahr:" HorizontalAlignment="Left" Margin="41,24,0,0" VerticalAlignment="Top" Width="90"/>
-        <ComboBox HorizontalAlignment="Left"
+        <Label Content="Schuljahr:" 
+               HorizontalAlignment="Left" 
+               Margin="41,24,0,0" 
+               VerticalAlignment="Top" 
+               Width="90"/>
+        <ComboBox Name="SchoolYearComboBox"
+                  HorizontalAlignment="Left"
                   ItemsSource="{Binding SchoolYear}"
+                  SelectedItem="{Binding SelectedSchoolYear}"
                   Height="26" 
                   Margin="110,24,0,0" 
                   VerticalAlignment="Top" 
