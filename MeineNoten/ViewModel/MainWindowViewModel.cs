@@ -137,7 +137,7 @@ namespace MeineNoten.ViewModel
             {
                 if (this.selectedSchoolYear == null)
                 {
-                    this.selectedSchoolYear = "initialize";
+                    this.selectedSchoolYear = "2019/20"; // default
                     this.OnPropertyChanged("SelectedSchoolYear");
                 }
                 return this.selectedSchoolYear;
@@ -325,6 +325,7 @@ namespace MeineNoten.ViewModel
             //aktualisieren
             try
             {
+                dataSet = new DataSet();
                 dataSet.ReadXml("MeineNoten.xml");
                 XmlFormatCheck();
                 
@@ -410,6 +411,6 @@ namespace MeineNoten.ViewModel
             this.CalculateTotalGrades();
             this.GesamtnoteBerechnen();
         }
-        #endregion 
+        #endregion
     }
 }

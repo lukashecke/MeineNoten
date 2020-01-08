@@ -65,6 +65,33 @@ namespace MeineNoten
         }
         #endregion
 
+        #region public methods
+        public IEnumerable CreateGrades()
+        {
+            List<Grade> list = new List<Grade>();
+            foreach (DataTable table in dataSet.Tables)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    if (row["Fach"].ToString().Equals(Selection) && row["Schuljahr"].ToString().Equals(SchoolYearComboBox.SelectedValue))
+                    {
+                        try
+                        {
+                            list.Add(new Grade(row["Fach"].ToString(), row["Art"].ToString(), row["Datum"].ToString(), row["Note"].ToString(), "(" + row["Gewichtung"].ToString() + ")", row["Schuljahr"].ToString()));
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Datensatz konnte nicht vollständig geladen wedern." + Environment.NewLine + "Überprüfen sie die XML-Datei auf Fehler.", "Beschädigte Daten");
+                        }
+                    }
+
+                }
+
+            }
+            return list;
+        }
+        #endregion
+
         #region private methods
         private void LoadData()
         {
@@ -105,31 +132,6 @@ namespace MeineNoten
 
         }
 
-        private IEnumerable CreateGrades()
-        {
-            List<Grade> list = new List<Grade>();
-            foreach (DataTable table in dataSet.Tables)
-            {
-                foreach (DataRow row in table.Rows)
-                {
-                    if (row["Fach"].ToString().Equals(Selection)&& row["Schuljahr"].ToString().Equals(SchoolYearComboBox.SelectedValue))
-                    {
-                        try
-                        {
-                            list.Add(new Grade(row["Fach"].ToString(), row["Art"].ToString(), row["Datum"].ToString(), row["Note"].ToString(), "(" +row["Gewichtung"].ToString()  + ")", row["Schuljahr"].ToString()));
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("Datensatz konnte nicht vollständig geladen wedern." + Environment.NewLine + "Überprüfen sie die XML-Datei auf Fehler.", "Beschädigte Daten");
-                        }
-                    }
-
-                }
-
-            }
-            return list;
-        }
-
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Grade grade = (Grade)((sender as ListView).SelectedItem);
@@ -140,7 +142,15 @@ namespace MeineNoten
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NewGradeWindow win2 = new NewGradeWindow(this.Selection, ((MainWindowViewModel)DataContext).SelectedSchoolYear);
-            win2.Show();
+            win2.ShowDialog(); // Waits until window closes
+            //Vorerst Notlösung für Refreshen
+            DataSet refresh = new DataSet();
+            refresh.ReadXml("MeineNoten.xml");
+            dataSet = refresh;
+            // fächerauswahl samt durchschnittsnote refreshen
+            ((MainWindowViewModel)DataContext).RefreshWindow();
+            //listview refreshen
+            listView.ItemsSource = CreateGrades();
         }
 
 #warning Auch beim Löschen Aktualisierungsprobleme
@@ -168,7 +178,10 @@ namespace MeineNoten
             DataSet refresh = new DataSet();
             refresh.ReadXml("MeineNoten.xml");
             dataSet = refresh;
+            // fächerauswahl samt durchschnittsnote refreshen
             ((MainWindowViewModel)DataContext).RefreshWindow();
+            //listview refreshen
+            listView.ItemsSource = CreateGrades();
         }
         #endregion
     }
