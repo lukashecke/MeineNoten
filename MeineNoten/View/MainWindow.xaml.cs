@@ -116,7 +116,7 @@ namespace MeineNoten
                     {
                         try
                         {
-                            list.Add(new Grade(row["Fach"].ToString(), row["Art"].ToString(), row["Datum"].ToString(), row["Note"].ToString(), row["Gewichtung"].ToString(), row["Schuljahr"].ToString()));
+                            list.Add(new Grade(row["Fach"].ToString(), row["Art"].ToString(), row["Datum"].ToString(), row["Note"].ToString(), "(" +row["Gewichtung"].ToString()  + ")", row["Schuljahr"].ToString()));
                         }
                         catch (Exception)
                         {
@@ -152,17 +152,23 @@ namespace MeineNoten
                 {
                     if (row["Fach"].ToString().Equals(GradeSelection.Fach) &&
                         row["Note"].ToString().Equals(GradeSelection.Note) &&
-                        row["Gewichtung"].ToString().Equals(GradeSelection.Gewichtung) &&
+                        ("("+row["Gewichtung"].ToString()+")").Equals(GradeSelection.Gewichtung) &&
                         row["Art"].ToString().Equals(GradeSelection.Art) &&
                         row["Datum"].ToString().Equals(GradeSelection.Date) &&
-                        row["Schuljahr"].ToString().Equals(SchoolYearComboBox.SelectedValue))
+                        row["Schuljahr"].ToString().Equals(SchoolYearComboBox.SelectedItem))
                     {
                         row.Delete();
                         dataSet.WriteXml("MeineNoten.xml");
+                        // ((MainWindowViewModel)DataContext).TotalGrades.Remove(new Grade( row["Fach"].ToString(), row["Art"].ToString(), row["Datum"].ToString(), row["Note"].ToString(), row["Gewichtung"].ToString(), row["Schuljahr"].ToString()));
                         break;
                     }
                 }
             }
+            //Vorerst Notlösung für Refreshen
+            DataSet refresh = new DataSet();
+            refresh.ReadXml("MeineNoten.xml");
+            dataSet = refresh;
+            ((MainWindowViewModel)DataContext).RefreshWindow();
         }
         #endregion
     }

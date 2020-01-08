@@ -214,7 +214,6 @@ namespace MeineNoten.ViewModel
                     }
                 }
                 // Bei Erststart 0/0 = NaN wird in GesamtnoteAnpassen abgefangen
-#warning Zeugnisnote ändert sich erst bei Programmstart
                 grade /= amountOfGrades;
                 this.TotalGrade = GesamtnoteBerechnen(); //GesamtnoteAnpassen(grade);
             }
@@ -222,11 +221,6 @@ namespace MeineNoten.ViewModel
         #endregion
 
         #region private methods
-        private void RefreshWindow()
-        {
-            this.CalculateTotalGrades();
-            this.GesamtnoteBerechnen();
-        }
         private void XmlFormatCheck()
         {
             foreach (DataTable table in dataSet.Tables)
@@ -328,11 +322,21 @@ namespace MeineNoten.ViewModel
 
         public void CalculateTotalGrades()
         {
-#warning Durchschnittsnote der Fächer falsch berechnet
+            //aktualisieren
+            try
+            {
+                dataSet.ReadXml("MeineNoten.xml");
+                XmlFormatCheck();
+                
+            } catch
+            {
+
+            }
+
             foreach (var item in this.TotalGrades)
             {
                 string fach = item.Fach;
-                double temp = 0.0;
+                double temps = 0.0;
                 int amountOfGrades = 0;
                 foreach (DataTable table in dataSet.Tables)
                 {
@@ -340,24 +344,24 @@ namespace MeineNoten.ViewModel
                     {
                         if (row["Fach"].ToString().Equals(fach) && row["Schuljahr"].ToString().Equals(SelectedSchoolYear))
                         {
-                            temp += ((Double.Parse(row["Note"].ToString())) * (Int16.Parse(row["Gewichtung"].ToString())));
+                            temps += ((Double.Parse(row["Note"].ToString())) * (Int16.Parse(row["Gewichtung"].ToString())));
                             amountOfGrades += (Int16.Parse(row["Gewichtung"].ToString()));
                         }
                     }
-                    temp /= amountOfGrades;
+                    temps /= amountOfGrades;
                     //runden
-                    temp *= 100;
-                    int i = (int)temp;
-                    temp = i;
-                    temp /= 100;
+                    temps *= 100;
+                    int i = (int)temps;
+                    temps = i;
+                    temps /= 100;
                 }
-                if (Double.IsNaN(temp) || (temp == (-21474836.48))) // -2147...,48 kommt raus bei leeren Noten
+                if (Double.IsNaN(temps) || (temps == (-21474836.48))) // -2147...,48 kommt raus bei leeren Noten
                 {
                     item.Note = "-";
                 }
                 else
                 {
-                    item.Note = temp.ToString();
+                    item.Note = temps.ToString();
                     // Noten mit Nachkommastellen versorgen
                     if (item.Note.Count() < 2)
                     {
@@ -400,6 +404,11 @@ namespace MeineNoten.ViewModel
             }
             this.OnPropertyChanged("TotalGrade");
             return retGrade;
+        }
+        public void RefreshWindow()
+        {
+            this.CalculateTotalGrades();
+            this.GesamtnoteBerechnen();
         }
         #endregion 
     }

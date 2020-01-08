@@ -72,7 +72,7 @@
         <Button Content="Neue Note" 
                 HorizontalAlignment="Left" 
                 Height="40" 
-                Margin="620,260,0,0" 
+                Margin="620,250,0,0" 
                 VerticalAlignment="Top" 
                 Width="145"
                 Click="Button_Click"/>
@@ -81,7 +81,7 @@
                 Content="Note löschen" 
                 HorizontalAlignment="Left" 
                 Height="40" 
-                Margin="470,210,0,0" 
+                Margin="470,250,0,0" 
                 VerticalAlignment="Top" 
                 Width="145"
                 Click="Button_Click_Delete"/>
