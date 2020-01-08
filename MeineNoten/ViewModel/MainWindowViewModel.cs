@@ -107,6 +107,27 @@ namespace MeineNoten.ViewModel
 
             }
         }
+
+        private ObservableCollection<string> schoolYear;
+        public ObservableCollection<string> SchoolYear
+        {
+            get
+            {
+                if (this.schoolYear == null)
+                {
+                    this.schoolYear = new ObservableCollection<string>();
+                    this.OnPropertyChanged("SchoolYear");
+                }
+                return this.schoolYear;
+            }
+            set
+            {
+                this.schoolYear = value;
+                this.OnPropertyChanged("SchoolYear");
+
+            }
+
+        }
         #endregion
 
         #region constructors
@@ -118,6 +139,10 @@ namespace MeineNoten.ViewModel
             this.Grades.Add(new Grade("4", 4));
             this.Grades.Add(new Grade("5", 5));
             this.Grades.Add(new Grade("6", 6));
+
+            this.SchoolYear.Add("2019/20");
+            this.SchoolYear.Add("2020/21");
+            this.SchoolYear.Add("2021/22");
 
             this.TotalGrades.Add(new Grade("Anwendungsentwicklung und Programmierung", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1"));
             this.TotalGrades.Add(new Grade("IT-Systeme", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1"));
@@ -305,7 +330,7 @@ namespace MeineNoten.ViewModel
         #region public methods
         public string GesamtnoteAnpassen(double grade)
         {
-            string retGrade = "initializing";
+            string retGrade = "initialize";
             if (grade % 1 == 0)
             {
                 retGrade = grade.ToString() + ",00";

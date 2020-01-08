@@ -14,8 +14,8 @@
         <!--Das noch als ListView / GridView-->
         <ListView Name="TotalGradesListView"
                   HorizontalAlignment="Left" 
-                  Height="342" 
-                  Margin="41,40,0,0" 
+                  Height="302" 
+                  Margin="41,80,0,0" 
                   VerticalAlignment="Top" 
                   Width="Auto"
                   ItemsSource="{Binding TotalGrades}"
@@ -35,7 +35,7 @@
                   SelectionChanged="ListView_SelectionChanged"
                   HorizontalAlignment="Left" 
                   Height="155" 
-                  Margin="470,40,0,0" 
+                  Margin="470,80,0,0" 
                   Padding="0"
                   VerticalAlignment="Top" 
                   Width="Auto">
@@ -60,19 +60,19 @@
         <Label Content="{Binding TotalGrade}" 
                HorizontalAlignment="Left" 
                Height="43" 
-               Margin="555,339,0,0" 
+               Margin="550,343,0,0" 
                VerticalAlignment="Top" 
                Width="210"/>
         <Label Content="Zeugnisnote: " 
                HorizontalAlignment="Left" 
                Height="39" 
-               Margin="475,339,0,0" 
+               Margin="470,343,0,0" 
                VerticalAlignment="Top" 
                Width="80"/>
         <Button Content="Neue Note" 
                 HorizontalAlignment="Left" 
                 Height="40" 
-                Margin="620,210,0,0" 
+                Margin="620,260,0,0" 
                 VerticalAlignment="Top" 
                 Width="145"
                 Click="Button_Click"/>
@@ -85,5 +85,12 @@
                 VerticalAlignment="Top" 
                 Width="145"
                 Click="Button_Click_Delete"/>
+        <Label Content="Schuljahr:" HorizontalAlignment="Left" Margin="41,24,0,0" VerticalAlignment="Top" Width="90"/>
+        <ComboBox HorizontalAlignment="Left"
+                  ItemsSource="{Binding SchoolYear}"
+                  Height="26" 
+                  Margin="110,24,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="100"/>
     </Grid>
 </Window>

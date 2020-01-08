@@ -44,7 +44,7 @@ namespace MeineNoten
             {
                 if (selection == null)
                 {
-                    selection = "initializing";
+                    selection = "initialize";
                 }
                 return selection;
             }
