@@ -19,7 +19,8 @@
                   VerticalAlignment="Top" 
                   Width="Auto"
                   ItemsSource="{Binding TotalGrades}"
-                  SelectionChanged="ListBox_SelectionChanged">
+                  SelectionChanged="TotalGradesListView_SelectionChanged"
+                  Cursor="Help">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Fach" 

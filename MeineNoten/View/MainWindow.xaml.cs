@@ -108,7 +108,7 @@ namespace MeineNoten
             data.database = dataSet;
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void TotalGradesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
             ((MainWindowViewModel)this.DataContext).CalculateTotalGrades();
