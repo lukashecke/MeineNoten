@@ -30,7 +30,7 @@ namespace MeineNoten.Model
             this.Art = art;
             this.Date = date;
             this.Note = note;
-            this.Gewichtung = gewichtung;
+            this.Gewichtung = "("+gewichtung+")";
         }
         #endregion
     }
