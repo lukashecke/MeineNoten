@@ -118,7 +118,6 @@ namespace MeineNoten
             Grade selectedGrade = (Grade)((sender as ListView).SelectedItem);
             Selection = selectedGrade.Fach.ToString();
             listView.ItemsSource = CreateGrades();
-#warning Eingetragene Noten erscheinen erst nach SelectinChange
             //Vorerst Notlösung für Refreshen
             DataSet refresh = new DataSet();
             refresh.ReadXml("MeineNoten.xml");
@@ -152,8 +151,7 @@ namespace MeineNoten
             //listview refreshen
             listView.ItemsSource = CreateGrades();
         }
-
-#warning Auch beim Löschen Aktualisierungsprobleme
+        
         private void Button_Click_Delete(object sender, RoutedEventArgs e)
         {
             foreach (DataTable table in dataSet.Tables)
