@@ -113,7 +113,7 @@ namespace MeineNoten
         }
         #endregion
 
-        #region Events (muss weg)
+        #region Events (1. Commands, 2. Logik nicht in die Grafik)
         private void TotalGradesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ((MainWindowViewModel)this.DataContext).CalculateTotalGrades();
@@ -148,47 +148,55 @@ namespace MeineNoten
             // fächerauswahl samt durchschnittsnote refreshen
             ((MainWindowViewModel)DataContext).RefreshWindow();
         }
-        
+
         private void Button_Click_Delete(object sender, RoutedEventArgs e)
         {
-            foreach (DataTable table in dataSet.Tables)
+            MessageBoxResult result = MessageBox.Show("Möchten sie die ausgewählte Note wirklich unwiedrruflich löschen?", "Wirklich löschen?",MessageBoxButton.YesNo);
+            switch (result)
             {
-                foreach (DataRow row in table.Rows)
-                {
-                    if (row["Fach"].ToString().Equals(GradeSelection.Fach) &&
-                        row["Note"].ToString().Equals(GradeSelection.Note) &&
-                        ("("+row["Gewichtung"].ToString()+")").Equals(GradeSelection.Gewichtung) &&
-                        row["Art"].ToString().Equals(GradeSelection.Art) &&
-                        row["Datum"].ToString().Equals(GradeSelection.Date) &&
-                        row["Schuljahr"].ToString().Equals(SchoolYearComboBox.SelectedItem))
+                case MessageBoxResult.Yes:
+                    foreach (DataTable table in dataSet.Tables)
                     {
-                        row.Delete();
-                        dataSet.WriteXml("MeineNoten.xml");
-                        // ((MainWindowViewModel)DataContext).TotalGrades.Remove(new Grade( row["Fach"].ToString(), row["Art"].ToString(), row["Datum"].ToString(), row["Note"].ToString(), row["Gewichtung"].ToString(), row["Schuljahr"].ToString()));
-                        break;
+                        foreach (DataRow row in table.Rows)
+                        {
+                            if (row["Fach"].ToString().Equals(GradeSelection.Fach) &&
+                                row["Note"].ToString().Equals(GradeSelection.Note) &&
+                                ("(" + row["Gewichtung"].ToString() + ")").Equals(GradeSelection.Gewichtung) &&
+                                row["Art"].ToString().Equals(GradeSelection.Art) &&
+                                row["Datum"].ToString().Equals(GradeSelection.Date) &&
+                                row["Schuljahr"].ToString().Equals(SchoolYearComboBox.SelectedItem))
+                            {
+                                row.Delete();
+                                dataSet.WriteXml("MeineNoten.xml");
+                                // ((MainWindowViewModel)DataContext).TotalGrades.Remove(new Grade( row["Fach"].ToString(), row["Art"].ToString(), row["Datum"].ToString(), row["Note"].ToString(), row["Gewichtung"].ToString(), row["Schuljahr"].ToString()));
+                                break;
+                            }
+                        }
                     }
-                }
+                    //Vorerst Notlösung für Refreshen
+                    DataSet refresh = new DataSet();
+                    refresh.ReadXml("MeineNoten.xml");
+                    dataSet = refresh;
+                    listView.ItemsSource = CreateGrades();
+                    //listview refreshen muss vor der Fächerwahl refresht werden, sonst aktualisiert die Letzte Note nicht korrekt
+                    // fächerauswahl samt durchschnittsnote refreshen
+                    ((MainWindowViewModel)DataContext).RefreshWindow();
+                    break;
+                case MessageBoxResult.No:
+                    break;
             }
-            //Vorerst Notlösung für Refreshen
-            DataSet refresh = new DataSet();
-            refresh.ReadXml("MeineNoten.xml");
-            dataSet = refresh;
-            listView.ItemsSource = CreateGrades();
-            //listview refreshen muss vor der Fächerwahl refresht werden, sonst aktualisiert die Letzte Note nicht korrekt
-            // fächerauswahl samt durchschnittsnote refreshen
-            ((MainWindowViewModel)DataContext).RefreshWindow();
         }
 
         private void SchoolYearComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!start)
             {
-            //listview refreshen muss vor der Fächerwahl refresht werden, sonst aktualisiert die Letzte Note nicht korrekt
-            listView.ItemsSource = CreateGrades();
-            // fächerauswahl samt durchschnittsnote refreshen
-            ((MainWindowViewModel)DataContext).RefreshWindow();
+                //listview refreshen muss vor der Fächerwahl refresht werden, sonst aktualisiert die Letzte Note nicht korrekt
+                listView.ItemsSource = CreateGrades();
+                // fächerauswahl samt durchschnittsnote refreshen
+                ((MainWindowViewModel)DataContext).RefreshWindow();
             }
-            start=false;
+            start = false;
         }
         #endregion
     }

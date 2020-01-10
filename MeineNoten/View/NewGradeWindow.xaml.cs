@@ -107,7 +107,7 @@ namespace MeineNoten.View
         }
         #endregion
 
-        #region Events (Müssen weg)
+        #region Events (1. Commands, 2. Logik nicht in die Grafik)
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
