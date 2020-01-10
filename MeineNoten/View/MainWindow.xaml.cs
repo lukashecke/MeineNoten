@@ -17,6 +17,7 @@ namespace MeineNoten
     {
 #warning TODO: Splash Screen und Programm immer im selben Fenster öffnen
 #warning TODO: GridViews sollen sich zur Laufzeit nicht verändern lassen
+#warning TODO: Irgendwie aktualisiert die lrtztr Note wieder nicht beim Löschen
 #warning Idee: Schuljahr soll grau sein, wenn keine Noten vorhanden sind
 #warning Idee: Roter Text bei fehlerhaften Daten
 #warning Idee: TextBoxes mit Klasse und Lehrer die auch in der XML gespeichert werden

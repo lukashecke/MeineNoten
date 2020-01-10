@@ -85,28 +85,27 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="6*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="6*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <ListView Name="TotalGradesListView"
                   HorizontalAlignment="Left" 
-                  Height="Auto"
+                  Height="284"
                   VerticalAlignment="Top" 
-                  Width="Auto"
+                  Width="318"
                   ItemsSource="{Binding TotalGrades}"
                   SelectionChanged="TotalGradesListView_SelectionChanged"
                   Cursor="Help" 
-                  Grid.Column="1"
-                      Grid.Row="1">
+                  Grid.Column="1" Grid.ColumnSpan="2" Margin="0,35,0,0" Grid.RowSpan="2">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Fach" 
-                                    Width="280" 
+                                    Width="270" 
                                     DisplayMemberBinding="{Binding Fach}" />
                         <GridViewColumn Header="Ø" 
-                                    Width="40" 
+                                    Width="38" 
                                     DisplayMemberBinding="{Binding Note}" />
                     </GridView>
                 </ListView.View>
@@ -114,10 +113,10 @@
             <ListView Name="listView"
                   SelectionChanged="ListView_SelectionChanged"
                   HorizontalAlignment="Left" 
-                  Height="Auto"
+                  Height="117"
                   Padding="0"
                   VerticalAlignment="Top" 
-                  Width="Auto" Grid.Column="3" Grid.Row="1">
+                  Width="317" Grid.Column="3" Margin="0.333,35,0,0" Grid.RowSpan="2">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Beschreibung" 
@@ -140,7 +139,7 @@
                 Height="40"
                 VerticalAlignment="Center" 
                 Width="145"
-                Click="Button_Click" Grid.Column="3" Grid.Row="1"/>
+                Click="Button_Click" Grid.Column="3" Grid.Row="1" Margin="0,136.667,0,107"/>
             <Button Name="DeleteButton"
                 Visibility="Hidden"
                 Content="Note löschen" 
@@ -148,7 +147,7 @@
                 Height="40"
                 VerticalAlignment="Center" 
                 Width="145"
-                Click="Button_Click_Delete" Grid.Column="3" Grid.Row="1"/>
+                Click="Button_Click_Delete" Grid.Column="3" Grid.Row="1" Margin="0.333,136.667,0,107"/>
             <Label 
                 Content="Zeugnisnote: " 
                HorizontalAlignment="Left" 
