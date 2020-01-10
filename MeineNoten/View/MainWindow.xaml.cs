@@ -152,6 +152,7 @@ namespace MeineNoten
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NewGradeWindow win2 = new NewGradeWindow(this.Selection, ((MainWindowViewModel)DataContext).SelectedSchoolYear);
+            win2.Owner = this;
             win2.ShowDialog(); // Waits until window closes
             //Vorerst Notlösung für Refreshen
             DataSet refresh = new DataSet();
