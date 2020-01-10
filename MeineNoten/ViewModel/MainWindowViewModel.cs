@@ -1,12 +1,8 @@
 ﻿using MeineNoten.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace MeineNoten.ViewModel
@@ -75,8 +71,6 @@ namespace MeineNoten.ViewModel
         {
             get
             {
-
-
                 return this.totalGrade;
             }
             set
@@ -147,6 +141,9 @@ namespace MeineNoten.ViewModel
                 this.selectedSchoolYear = value;
                 this.OnPropertyChanged("SelectedSchoolYear");
                 RefreshWindow();
+#warning notenanzeige muss hier aktualisiert werden
+                // irgendwie so...
+                // listView.ItemsSource = CreateGrades();
 
             }
 
@@ -167,16 +164,16 @@ namespace MeineNoten.ViewModel
             this.SchoolYear.Add("2020/21");
             this.SchoolYear.Add("2021/22");
 
-            this.TotalGrades.Add(new Grade("Anwendungsentwicklung und Programmierung", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1","initialize"));
-            this.TotalGrades.Add(new Grade("IT-Systeme", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1", "initialize"));
-            this.TotalGrades.Add(new Grade("Vernetzte Systeme", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1", "initialize"));
-            this.TotalGrades.Add(new Grade("Betriebswirtschaftliche Prozesse", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1", "initialize"));
-            this.TotalGrades.Add(new Grade("Sozialkunde", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1", "initialize"));
-            this.TotalGrades.Add(new Grade("Deutsch", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1", "initialize"));
-            this.TotalGrades.Add(new Grade("Englisch", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1", "initialize"));
-            this.TotalGrades.Add(new Grade("Ethik", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1", "initialize"));
-            this.TotalGrades.Add(new Grade("Sport", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1", "initialize"));
-            this.TotalGrades.Add(new Grade("Crimpen und Löten", "Gesamtnote", DateTime.Now.ToString(), "INSERT", "1", "initialize"));
+            this.TotalGrades.Add(new Grade("Anwendungsentwicklung und Programmierung", "Gesamtnote", DateTime.Now.ToString(), "-", "1","initialize"));
+            this.TotalGrades.Add(new Grade("IT-Systeme", "Gesamtnote", DateTime.Now.ToString(), "-", "1", "initialize"));
+            this.TotalGrades.Add(new Grade("Vernetzte Systeme", "Gesamtnote", DateTime.Now.ToString(), "-", "1", "initialize"));
+            this.TotalGrades.Add(new Grade("Betriebswirtschaftliche Prozesse", "Gesamtnote", DateTime.Now.ToString(), "-", "1", "initialize"));
+            this.TotalGrades.Add(new Grade("Sozialkunde", "Gesamtnote", DateTime.Now.ToString(), "-", "1", "initialize"));
+            this.TotalGrades.Add(new Grade("Deutsch", "Gesamtnote", DateTime.Now.ToString(), "-", "1", "initialize"));
+            this.TotalGrades.Add(new Grade("Englisch", "Gesamtnote", DateTime.Now.ToString(), "-", "1", "initialize"));
+            this.TotalGrades.Add(new Grade("Ethik", "Gesamtnote", DateTime.Now.ToString(), "-", "1", "initialize"));
+            this.TotalGrades.Add(new Grade("Sport", "Gesamtnote", DateTime.Now.ToString(), "-", "1", "initialize"));
+            this.TotalGrades.Add(new Grade("Crimpen und Löten", "Gesamtnote", DateTime.Now.ToString(), "-", "1", "initialize"));
 
             try
             {
@@ -366,6 +363,11 @@ namespace MeineNoten.ViewModel
                     // Noten mit Nachkommastellen versorgen
                     if (item.Note.Count() < 2)
                     {
+                        if (item.Note.Equals("0")) // Damit, wenn noch keine Noten eingetragen auch alles auf "-" und nicht auf 0
+                        {
+                            item.Note = "-";
+                            break;
+                        }
                         item.Note += ",00";
                     }
                     else if (item.Note.Count() < 4)
@@ -376,35 +378,6 @@ namespace MeineNoten.ViewModel
                 // this.TotalGrades = item.Note;
             }
                 this.OnPropertyChanged("TotalGrades");
-            
-        }
-        public string GesamtnoteAnpassen(double grade)
-        {
-            string retGrade = "initialize";
-            if (grade % 1 == 0)
-            {
-                retGrade = grade.ToString() + ",00";
-            }
-            else if (Double.IsNaN(grade))// Bei erststart des Programmes
-            {
-                retGrade = "Noch keine Noten eingetragen!";
-            }
-            else
-            {
-                //runden
-                grade *= 100;
-                int i = (int)grade;
-                grade = i;
-                grade /= 100;
-                retGrade = grade.ToString();
-                // Noten mit einer Nachkommastelle eine 0 anhängen
-                if (retGrade.Count() != 4)
-                {
-                    retGrade += "0";
-                }
-            }
-            this.OnPropertyChanged("TotalGrade");
-            return retGrade;
         }
         public void RefreshWindow()
         {

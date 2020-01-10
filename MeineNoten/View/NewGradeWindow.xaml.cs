@@ -47,33 +47,6 @@ namespace MeineNoten.View
         #endregion
 
         #region private methods
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Check(((NewGradeWindowViewModel)DataContext).SelectedSubject,
-                    ((NewGradeWindowViewModel)DataContext).SelectedGrade,
-                    ((NewGradeWindowViewModel)DataContext).SelectedDate.ToString(),
-                    ((NewGradeWindowViewModel)DataContext).Art);
-
-                data.InsertDataRow(((NewGradeWindowViewModel)DataContext).SelectedSubject,
-                    ((NewGradeWindowViewModel)DataContext).SelectedGrade,
-                    ToWeight(((NewGradeWindowViewModel)DataContext).SelectedWeighting),
-                    DateTimeToDateString(((NewGradeWindowViewModel)DataContext).SelectedDate),
-                    ((NewGradeWindowViewModel)DataContext).Art,
-                    this.SelectedSchoolYear);
-                using (DataSet)
-                {
-                    DataSet.WriteXml("MeineNoten.xml");
-                }
-                this.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Auswahl ist nicht vollständig.", "Noteninformation nicht vollständig");
-            }
-        }
-
         private void Check(string selectedSubject, string selectedGrade, string selectedDate, string art)
         {
             if (selectedSubject == null || selectedGrade == null || selectedDate == null || string.IsNullOrWhiteSpace(art))
@@ -130,6 +103,35 @@ namespace MeineNoten.View
                 month = "0" + month;
             }
             return $"{day}.{month}.{year}";
+        }
+        #endregion
+
+        #region Events (Müssen weg)
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Check(((NewGradeWindowViewModel)DataContext).SelectedSubject,
+                    ((NewGradeWindowViewModel)DataContext).SelectedGrade,
+                    ((NewGradeWindowViewModel)DataContext).SelectedDate.ToString(),
+                    ((NewGradeWindowViewModel)DataContext).Art);
+
+                data.InsertDataRow(((NewGradeWindowViewModel)DataContext).SelectedSubject,
+                    ((NewGradeWindowViewModel)DataContext).SelectedGrade,
+                    ToWeight(((NewGradeWindowViewModel)DataContext).SelectedWeighting),
+                    DateTimeToDateString(((NewGradeWindowViewModel)DataContext).SelectedDate),
+                    ((NewGradeWindowViewModel)DataContext).Art,
+                    this.SelectedSchoolYear);
+                using (DataSet)
+                {
+                    DataSet.WriteXml("MeineNoten.xml");
+                }
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Auswahl ist nicht vollständig.", "Noteninformation nicht vollständig");
+            }
         }
         #endregion
     }

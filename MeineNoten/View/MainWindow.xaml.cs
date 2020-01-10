@@ -107,7 +107,9 @@ namespace MeineNoten
             }
             data.database = dataSet;
         }
+        #endregion
 
+        #region Events (muss weg)
         private void TotalGradesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -146,10 +148,10 @@ namespace MeineNoten
             DataSet refresh = new DataSet();
             refresh.ReadXml("MeineNoten.xml");
             dataSet = refresh;
-            // fächerauswahl samt durchschnittsnote refreshen
-            ((MainWindowViewModel)DataContext).RefreshWindow();
             //listview refreshen
             listView.ItemsSource = CreateGrades();
+            // fächerauswahl samt durchschnittsnote refreshen
+            ((MainWindowViewModel)DataContext).RefreshWindow();
         }
         
         private void Button_Click_Delete(object sender, RoutedEventArgs e)
@@ -176,10 +178,12 @@ namespace MeineNoten
             DataSet refresh = new DataSet();
             refresh.ReadXml("MeineNoten.xml");
             dataSet = refresh;
+            //listview refreshen muss vor der Fächerwahl refresht werden, sonst aktualisiert die Letzte Note nicht korrekt
+#warning bei Schuljahreswechsel Problem weiterhin vorhanden
+            listView.ItemsSource = CreateGrades();
             // fächerauswahl samt durchschnittsnote refreshen
             ((MainWindowViewModel)DataContext).RefreshWindow();
-            //listview refreshen
-            listView.ItemsSource = CreateGrades();
+            
         }
         #endregion
     }
