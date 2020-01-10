@@ -140,13 +140,7 @@ namespace MeineNoten.ViewModel
             {
                 this.selectedSchoolYear = value;
                 this.OnPropertyChanged("SelectedSchoolYear");
-                RefreshWindow();
-#warning notenanzeige muss hier aktualisiert werden
-                // irgendwie so...
-                // listView.ItemsSource = CreateGrades();
-
             }
-
         }
         #endregion
 
@@ -314,6 +308,7 @@ namespace MeineNoten.ViewModel
             }
             this.TotalGrade = ret;
             this.OnPropertyChanged("TotalGrade");
+            this.OnPropertyChanged("TotalGrades"); // Bugfix for refreshing the last Grade in the DataSet
             return ret;
         }
 
@@ -377,7 +372,7 @@ namespace MeineNoten.ViewModel
                 }
                 // this.TotalGrades = item.Note;
             }
-                this.OnPropertyChanged("TotalGrades");
+            this.OnPropertyChanged("TotalGrades");
         }
         public void RefreshWindow()
         {

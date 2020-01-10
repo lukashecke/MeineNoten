@@ -16,6 +16,10 @@ namespace MeineNoten
     public partial class MainWindow : Window
     {
         #region fields
+        /// <summary>
+        /// needed to fix selection changed on selectedschoolyear
+        /// </summary>
+        bool start = true;
         Data data = new Data();
         private DataSet dataSet;
         #endregion
@@ -112,11 +116,8 @@ namespace MeineNoten
         #region Events (muss weg)
         private void TotalGradesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             ((MainWindowViewModel)this.DataContext).CalculateTotalGrades();
             ((MainWindowViewModel)this.DataContext).GesamtnoteBerechnen();
-
-
             Grade selectedGrade = (Grade)((sender as ListView).SelectedItem);
             Selection = selectedGrade.Fach.ToString();
             listView.ItemsSource = CreateGrades();
@@ -125,12 +126,6 @@ namespace MeineNoten
             refresh.ReadXml("MeineNoten.xml");
             dataSet = refresh;
             DeleteButton.Visibility = Visibility.Hidden;
-
-            // ((MainWindowViewModel)this.DataContext).OnPropertyChanged("TotalGrades");
-
-
-
-
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -178,12 +173,22 @@ namespace MeineNoten
             DataSet refresh = new DataSet();
             refresh.ReadXml("MeineNoten.xml");
             dataSet = refresh;
+            listView.ItemsSource = CreateGrades();
             //listview refreshen muss vor der Fächerwahl refresht werden, sonst aktualisiert die Letzte Note nicht korrekt
-#warning bei Schuljahreswechsel Problem weiterhin vorhanden
+            // fächerauswahl samt durchschnittsnote refreshen
+            ((MainWindowViewModel)DataContext).RefreshWindow();
+        }
+
+        private void SchoolYearComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!start)
+            {
+            //listview refreshen muss vor der Fächerwahl refresht werden, sonst aktualisiert die Letzte Note nicht korrekt
             listView.ItemsSource = CreateGrades();
             // fächerauswahl samt durchschnittsnote refreshen
             ((MainWindowViewModel)DataContext).RefreshWindow();
-            
+            }
+            start=false;
         }
         #endregion
     }

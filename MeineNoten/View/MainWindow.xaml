@@ -92,6 +92,7 @@
                VerticalAlignment="Top" 
                Width="90"/>
         <ComboBox Name="SchoolYearComboBox"
+                  SelectionChanged="SchoolYearComboBox_SelectionChanged"
                   HorizontalAlignment="Left"
                   ItemsSource="{Binding SchoolYear}"
                   SelectedItem="{Binding SelectedSchoolYear}"
