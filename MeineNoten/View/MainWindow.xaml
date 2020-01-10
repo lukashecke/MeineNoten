@@ -100,5 +100,10 @@
                   Margin="110,24,0,0" 
                   VerticalAlignment="Top" 
                   Width="100"/>
+        <!--
+        <Image HorizontalAlignment="Left" 
+               Source="http://192.168.113.119:8093/Main/api/1.0/T-MAIN-DE/1/BaseData/Image/MCC.MA.SEX.MALE.ico"
+               Height="26" Margin="315,24,0,0" VerticalAlignment="Top" Width="85"/>
+        -->
     </Grid>
 </Window>
