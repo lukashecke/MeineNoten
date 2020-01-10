@@ -37,7 +37,7 @@ namespace MeineNoten.View
         {
             // Centering the Window
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-
+            
             this.DataContext = new NewGradeWindowViewModel();
             InitializeComponent();
 

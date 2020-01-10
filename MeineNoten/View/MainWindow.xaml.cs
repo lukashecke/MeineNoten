@@ -63,12 +63,15 @@ namespace MeineNoten
         #region constructors
         public MainWindow()
         {
+            SplashScreen splashScreen = new SplashScreen("Images/Image_SplashScreen.png");
+            splashScreen.Show(true,true);
+
             // Pause to show the splash screen for 1 seconds longer then default
             System.Threading.Thread.Sleep(1000);
 
             // Centering the Window
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-
+            
             this.DataContext = new MainWindowViewModel();
             InitializeComponent();
 
