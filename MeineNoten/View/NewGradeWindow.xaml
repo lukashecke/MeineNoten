@@ -55,7 +55,8 @@
                     Height="25" Margin="15,185,0,0" 
                     VerticalAlignment="Top" 
                     Width="150"/>
-        <TextBox Text="{Binding Art}"
+        <TextBox Name="PART_Beschreibung"
+                 Text="{Binding Art}"
                  HorizontalAlignment="Left" 
                  Height="20" 
                  Margin="15,113,0,0" 

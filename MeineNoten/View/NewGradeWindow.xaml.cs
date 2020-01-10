@@ -43,6 +43,7 @@ namespace MeineNoten.View
             this.Selection = selection;
             ((NewGradeWindowViewModel)DataContext).SelectedSubject = this.Selection;
             this.SelectedSchoolYear = selectedSchoolYear;
+            PART_Beschreibung.Focus();
         }
         #endregion
 
