@@ -8,9 +8,11 @@
         Title="Meine Noten" 
         Height="450" 
         Width="800" 
-        Background="LightGray"
+        Background="Black"
         ResizeMode="NoResize">
+
     <Grid >
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -28,7 +30,10 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <Image Source="https://www.jing.fm/clipimg/full/119-1195415_brochure-graphic-design-background-png-clipart-graphic-brochure.png"
+                   Margin="0,-19,0.2,-356.6" Grid.ColumnSpan="10"/>
             <Label 
+                Foreground="White"
                 Content="Schuljahr:" 
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" 
@@ -45,6 +50,7 @@
                 Width="100"
                 Grid.Column="2"/>
             <Label 
+                Foreground="White"
                 Content="Klasse:" 
                HorizontalAlignment="Left"
                VerticalAlignment="Top" 
@@ -60,6 +66,7 @@
                 Width="100"
                 Grid.Column="5"/>
             <Label 
+                Foreground="White"
                Content="Klassenleitung:" 
                HorizontalAlignment="Left"
                VerticalAlignment="Top" 
@@ -148,7 +155,7 @@
                 VerticalAlignment="Center" 
                 Width="145"
                 Click="Button_Click_Delete" Grid.Column="3" Grid.Row="1" Margin="0.333,136.667,0,107"/>
-            <Label 
+            <Label Foreground="White"
                 Content="Zeugnisnote: " 
                HorizontalAlignment="Left" 
                Height="Auto" 
@@ -156,6 +163,7 @@
                Grid.Column="3"
                    VerticalAlignment="Bottom" Grid.Row="1"/>
             <Label Content="{Binding TotalGrade}" 
+                   Foreground="White"
                HorizontalAlignment="Center" 
                Height="Auto" 
                VerticalAlignment="Bottom" 

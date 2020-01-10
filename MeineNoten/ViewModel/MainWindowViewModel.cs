@@ -76,7 +76,6 @@ namespace MeineNoten.ViewModel
                     this.totalGrades = new ObservableCollection<Grade>();
                     this.OnPropertyChanged("TotalGrades");
                 }
-
                 return this.totalGrades;
             }
             set

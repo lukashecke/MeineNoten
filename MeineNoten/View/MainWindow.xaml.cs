@@ -201,6 +201,7 @@ namespace MeineNoten
                     //listview refreshen muss vor der Fächerwahl refresht werden, sonst aktualisiert die Letzte Note nicht korrekt
                     // fächerauswahl samt durchschnittsnote refreshen
                     ((MainWindowViewModel)DataContext).RefreshWindow();
+
                     break;
                 case MessageBoxResult.No:
                     break;
