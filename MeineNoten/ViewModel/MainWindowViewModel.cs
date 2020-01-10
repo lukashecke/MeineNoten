@@ -51,21 +51,6 @@ namespace MeineNoten.ViewModel
             }
         }
 
-        private Grade selectedItem;
-        public Grade SelectedItem
-        {
-            get
-            {
-                return this.selectedItem;
-            }
-            set
-            {
-                this.selectedItem = value;
-                this.OnPropertyChanged("SelectedItem");
-
-            }
-        }
-
         private string totalGrade;
         public string TotalGrade
         {

@@ -10,100 +10,158 @@
         Width="800" 
         Background="LightGray"
         ResizeMode="NoResize">
-    <Grid>
-        <!--Das noch als ListView / GridView-->
-        <ListView Name="TotalGradesListView"
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="0,20,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label 
+                Content="Schuljahr:" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top" 
+                Width="Auto"
+                Grid.Column="1"/>
+            <ComboBox 
+                Name="SchoolYearComboBox"
+                SelectionChanged="SchoolYearComboBox_SelectionChanged"
+                HorizontalAlignment="Left"
+                ItemsSource="{Binding SchoolYear}"
+                SelectedItem="{Binding SelectedSchoolYear}"
+                Height="26"
+                VerticalAlignment="Top" 
+                Width="100"
+                Grid.Column="2"/>
+            <Label 
+                Content="Klasse:" 
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top" 
+               Width="Auto"
+               Grid.Column="4"/>
+            <TextBox 
+                HorizontalAlignment="Left"
+                VerticalContentAlignment="Center"
+                Height="26"
+                TextWrapping="Wrap" 
+                Text="1FA131" 
+                VerticalAlignment="Top" 
+                Width="100"
+                Grid.Column="5"/>
+            <Label 
+               Content="Klassenleitung:" 
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top" 
+               Width="Auto"
+               Grid.Column="7"/>
+            <TextBox 
+                HorizontalAlignment="Left"
+                VerticalContentAlignment="Center"
+                Height="26"
+                TextWrapping="Wrap" 
+                Text="Fr. Pomper" 
+                VerticalAlignment="Top" 
+                Width="100"
+                Grid.Column="8"/>
+        </Grid>
+
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ListView Name="TotalGradesListView"
                   HorizontalAlignment="Left" 
-                  Height="302" 
-                  Margin="41,80,0,0" 
+                  Height="Auto"
                   VerticalAlignment="Top" 
                   Width="Auto"
                   ItemsSource="{Binding TotalGrades}"
                   SelectionChanged="TotalGradesListView_SelectionChanged"
-                  Cursor="Help">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Fach" 
+                  Cursor="Help" 
+                  Grid.Column="1"
+                      Grid.Row="1">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Fach" 
                                     Width="280" 
                                     DisplayMemberBinding="{Binding Fach}" />
-                    <GridViewColumn Header="Ø" 
+                        <GridViewColumn Header="Ø" 
                                     Width="40" 
                                     DisplayMemberBinding="{Binding Note}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <ListView Name="listView"
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ListView Name="listView"
                   SelectionChanged="ListView_SelectionChanged"
                   HorizontalAlignment="Left" 
-                  Height="155" 
-                  Margin="470,80,0,0" 
+                  Height="Auto"
                   Padding="0"
                   VerticalAlignment="Top" 
-                  Width="Auto">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Beschreibung" 
+                  Width="Auto" Grid.Column="3" Grid.Row="1">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Beschreibung" 
                                     Width="110" 
                                     DisplayMemberBinding="{Binding Art}" />
-                    <GridViewColumn Header="Datum" 
+                        <GridViewColumn Header="Datum" 
                                     Width="75" 
                                     DisplayMemberBinding="{Binding Date}" />
-                    <GridViewColumn Header="Note" 
+                        <GridViewColumn Header="Note" 
                                     Width="40" 
                                     DisplayMemberBinding="{Binding Note}" />
-                    <GridViewColumn Header="Wichtung" 
+                        <GridViewColumn Header="Wichtung" 
                                     Width="60" 
                                     DisplayMemberBinding="{Binding Gewichtung}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <!--Combobox Text wird nicht angezeigt!-->
-        <Label Content="{Binding TotalGrade}" 
-               HorizontalAlignment="Left" 
-               Height="43" 
-               Margin="550,343,0,0" 
-               VerticalAlignment="Top" 
-               Width="210"/>
-        <Label Content="Zeugnisnote: " 
-               HorizontalAlignment="Left" 
-               Height="39" 
-               Margin="470,343,0,0" 
-               VerticalAlignment="Top" 
-               Width="80"/>
-        <Button Content="Neue Note" 
-                HorizontalAlignment="Left" 
-                Height="40" 
-                Margin="620,250,0,0" 
-                VerticalAlignment="Top" 
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button Content="Neue Note" 
+                HorizontalAlignment="Right" 
+                Height="40"
+                VerticalAlignment="Center" 
                 Width="145"
-                Click="Button_Click"/>
-        <Button Name="DeleteButton"
+                Click="Button_Click" Grid.Column="3" Grid.Row="1"/>
+            <Button Name="DeleteButton"
                 Visibility="Hidden"
                 Content="Note löschen" 
                 HorizontalAlignment="Left" 
-                Height="40" 
-                Margin="470,250,0,0" 
-                VerticalAlignment="Top" 
+                Height="40"
+                VerticalAlignment="Center" 
                 Width="145"
-                Click="Button_Click_Delete"/>
-        <Label Content="Schuljahr:" 
+                Click="Button_Click_Delete" Grid.Column="3" Grid.Row="1"/>
+            <Label 
+                Content="Zeugnisnote: " 
                HorizontalAlignment="Left" 
-               Margin="41,24,0,0" 
-               VerticalAlignment="Top" 
-               Width="90"/>
-        <ComboBox Name="SchoolYearComboBox"
-                  SelectionChanged="SchoolYearComboBox_SelectionChanged"
-                  HorizontalAlignment="Left"
-                  ItemsSource="{Binding SchoolYear}"
-                  SelectedItem="{Binding SelectedSchoolYear}"
-                  Height="26" 
-                  Margin="110,24,0,0" 
-                  VerticalAlignment="Top" 
-                  Width="100"/>
-        <!--
-        <Image HorizontalAlignment="Left" 
-               Source="http://192.168.113.119:8093/Main/api/1.0/T-MAIN-DE/1/BaseData/Image/MCC.MA.SEX.MALE.ico"
-               Height="26" Margin="315,24,0,0" VerticalAlignment="Top" Width="85"/>
-        -->
+               Height="Auto" 
+               Width="Auto" 
+               Grid.Column="3"
+                   VerticalAlignment="Bottom" Grid.Row="1"/>
+            <Label Content="{Binding TotalGrade}" 
+               HorizontalAlignment="Center" 
+               Height="Auto" 
+               VerticalAlignment="Bottom" 
+               Width="Auto" 
+                   Grid.Column="3" Grid.Row="1"/>
+        </Grid>
     </Grid>
 </Window>
