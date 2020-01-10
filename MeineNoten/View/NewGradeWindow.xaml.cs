@@ -53,7 +53,7 @@ namespace MeineNoten.View
         #region private methods
         private void Check(string selectedSubject, string selectedGrade, string selectedDate, string art)
         {
-            if (selectedSubject == null || selectedGrade == null || selectedDate == null || string.IsNullOrWhiteSpace(art))
+            if (selectedSubject == null || selectedSubject.Equals("initialize") || selectedGrade == null || selectedDate == null || string.IsNullOrWhiteSpace(art))
             {
                 throw new Exception();
             }
