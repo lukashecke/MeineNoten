@@ -35,6 +35,9 @@ namespace MeineNoten.View
         #region constructors
         public NewGradeWindow(string selection, string selectedSchoolYear)
         {
+            // Centering the Window
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
             this.DataContext = new NewGradeWindowViewModel();
             InitializeComponent();
 

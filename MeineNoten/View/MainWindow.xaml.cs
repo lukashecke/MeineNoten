@@ -15,6 +15,7 @@ namespace MeineNoten
     /// </summary>
     public partial class MainWindow : Window
     {
+#warning Idee: Schuljahr soll grau sein, wenn keine Noten vorhanden sind. Eventuell noch rot bei fehlerhaften Daten
         #region fields
         /// <summary>
         /// needed to fix selection changed on selectedschoolyear
@@ -62,6 +63,12 @@ namespace MeineNoten
         #region constructors
         public MainWindow()
         {
+            // Pause to show the splash screen for 1 seconds longer then default
+            System.Threading.Thread.Sleep(1000);
+
+            // Centering the Window
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
             this.DataContext = new MainWindowViewModel();
             InitializeComponent();
 
