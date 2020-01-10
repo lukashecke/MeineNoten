@@ -109,7 +109,7 @@ namespace MeineNoten
         #region private methods
         private void ShowSplashScreen()
         {
-            SplashScreen splashScreen = new SplashScreen("Images/Image_SplashScreen.jpg");
+            SplashScreen splashScreen = new SplashScreen("Images/Splash Screen.png");
             splashScreen.Show(true, true);
 
             // Pause to show the splash screen for 1 seconds longer then default
