@@ -13,7 +13,7 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner">
     <!--ResizeMode="CanMinimize"-->
-    <Grid>
+    <Grid FocusManager.FocusedElement="{Binding ElementName=PART_Beschreibung}">
         <Label Content="Fach" 
                HorizontalAlignment="Left" 
                Height="30" 
