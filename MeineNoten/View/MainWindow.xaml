@@ -126,8 +126,23 @@
                                     Width="270" 
                                     DisplayMemberBinding="{Binding Title}" />
                         <GridViewColumn Header="Ø" 
-                                    Width="38" 
-                                    DisplayMemberBinding="{Binding Note, StringFormat='{}{0:N2}'}" >
+                                    Width="38">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock >
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Text" Value="{Binding Note, StringFormat='{}{0:N2}'}"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Note, StringFormat='{}{0:N2}'}" Value="0.00">
+                                                        <Setter Property="Text" Value="-"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         
                     </GridView>
@@ -157,9 +172,28 @@
                         <GridViewColumn Header="Note" 
                                     Width="40" 
                                     DisplayMemberBinding="{Binding Note}" />
-                        <GridViewColumn DisplayMemberBinding="{Binding Gewichtung, Mode=OneWay}"
+                        <GridViewColumn 
                             x:Name="CheckBoxColumn" Header="Wichtung" 
                                     Width="60" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock >
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Text" Value="{Binding Gewichtung, Mode=OneWay}"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Gewichtung, Mode=OneWay}" Value="0">
+                                                        <Setter Property="Text" Value="1"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Gewichtung, Mode=OneWay}" Value="1">
+                                                        <Setter Property="Text" Value="2"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
 
                             <!--<GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -206,8 +240,10 @@
                    Grid.Column="3" Grid.Row="1">
                 <Label.Style>
                     <Style TargetType="Label">
-                        <Setter Property="Content" Value="{Binding ElementName=PART_SchoolYears,Path=SelectedItem.Note, StringFormat='{}{0:N2}'}"/>
-                <Style.Triggers>
+                        <Setter Property="Content" 
+                                Value="{Binding ElementName=PART_SchoolYears,Path=SelectedItem.Note}"/>
+                        <Setter Property="ContentStringFormat" Value='{}{0:N2}'/>
+                        <Style.Triggers>
                             <DataTrigger Binding="{Binding ElementName=PART_SchoolYears,Path=SelectedItem.Note}" 
                                          Value="0">
                                 <Setter Property="Content" Value="Keine Noten eingetragen!" />
