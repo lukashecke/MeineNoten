@@ -8,15 +8,19 @@
         Title="Meine Noten" 
         Height="450" 
         Width="800" 
-        Background="Black"
-        ResizeMode="NoResize">
+        Background="LightGray"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+    </Window.Resources>
 
-    <Grid >
+    <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
         <Grid Margin="0,20,0,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -30,27 +34,31 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <!--
             <Image Source="https://www.jing.fm/clipimg/full/119-1195415_brochure-graphic-design-background-png-clipart-graphic-brochure.png"
-                   Margin="0,-19,0.2,-356.6" Grid.ColumnSpan="10"/>
+                   Margin="0,-19,0.2,-356.6" Grid.ColumnSpan="10"/>-->
             <Label 
-                Foreground="White"
+                Foreground="Black"
                 Content="Schuljahr:" 
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" 
                 Width="Auto"
                 Grid.Column="1"/>
-            <ComboBox 
-                Name="SchoolYearComboBox"
-                SelectionChanged="SchoolYearComboBox_SelectionChanged"
+            <!--Name="SchoolYearComboBox"-->
+            <!--SelectionChanged="SchoolYearComboBox_SelectionChanged"-->
+            <ComboBox                
+                Name="PART_SchoolYears"
                 HorizontalAlignment="Left"
-                ItemsSource="{Binding SchoolYear}"
-                SelectedItem="{Binding SelectedSchoolYear}"
+                ItemsSource="{Binding SchoolYearViewModels}"
+                DisplayMemberPath="Title"
+                SelectedItem="{Binding SchoolYearViewModels.Current, Mode=TwoWay}"
+                IsSynchronizedWithCurrentItem="True"
                 Height="26"
                 VerticalAlignment="Top" 
                 Width="100"
-                Grid.Column="2"/>
+                Grid.Column="2" />
             <Label 
-                Foreground="White"
+                Foreground="Black"
                 Content="Klasse:" 
                HorizontalAlignment="Left"
                VerticalAlignment="Top" 
@@ -66,7 +74,7 @@
                 Width="100"
                 Grid.Column="5"/>
             <Label 
-                Foreground="White"
+                Foreground="Black"
                Content="Klassenleitung:" 
                HorizontalAlignment="Left"
                VerticalAlignment="Top" 
@@ -97,28 +105,41 @@
                 <ColumnDefinition Width="6*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ListView Name="TotalGradesListView"
+
+            <!--Name="TotalGradesListView"-->
+            <!--SelectionChanged="TotalGradesListView_SelectionChanged"-->
+            <ListView Name="PART_Subjects"
                   HorizontalAlignment="Left" 
                   Height="284"
                   VerticalAlignment="Top" 
                   Width="318"
-                  ItemsSource="{Binding TotalGrades}"
-                  SelectionChanged="TotalGradesListView_SelectionChanged"
+                  ItemsSource="{Binding ElementName=PART_SchoolYears, Path=SelectedItem.SubjectViewModels}"        
+                  IsSynchronizedWithCurrentItem="True"
+                 SelectedItem="{Binding ElementName=PART_SchoolYears, Path=SelectedItem.SubjectViewModels.Current,  Mode=TwoWay}"
                   Cursor="Help" 
-                  Grid.Column="1" Grid.ColumnSpan="2" Margin="0,35,0,0" Grid.RowSpan="2">
+                  Grid.Column="1" Grid.ColumnSpan="2" Margin="0,35,0,0" Grid.RowSpan="2" >
                 <ListView.View>
+                    
+                    
                     <GridView>
                         <GridViewColumn Header="Fach" 
                                     Width="270" 
-                                    DisplayMemberBinding="{Binding Fach}" />
+                                    DisplayMemberBinding="{Binding Title}" />
                         <GridViewColumn Header="Ø" 
                                     Width="38" 
-                                    DisplayMemberBinding="{Binding Note}" />
+                                    DisplayMemberBinding="{Binding Note, StringFormat='{}{0:N2}'}" >
+                        </GridViewColumn>
+                        
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListView Name="listView"
-                  SelectionChanged="ListView_SelectionChanged"
+            <!--Name="listView"-->
+            <!--SelectionChanged="ListView_SelectionChanged"-->
+            <ListView 
+                Name="PART_Marks"
+                  ItemsSource="{Binding ElementName=PART_Subjects, Path=SelectedItem.MarkViewModels}"
+                SelectedItem="{Binding ElementName=PART_Subjects, Path=SelectedItem.MarkViewModels.Current,  Mode=TwoWay}"
+                IsSynchronizedWithCurrentItem="True"
                   HorizontalAlignment="Left" 
                   Height="117"
                   Padding="0"
@@ -128,47 +149,73 @@
                     <GridView>
                         <GridViewColumn Header="Beschreibung" 
                                     Width="110" 
-                                    DisplayMemberBinding="{Binding Art}" />
+                                    DisplayMemberBinding="{Binding Art}" 
+                                        />
                         <GridViewColumn Header="Datum" 
                                     Width="75" 
-                                    DisplayMemberBinding="{Binding Date}" />
+                                    DisplayMemberBinding="{Binding Date, StringFormat='{}{0:dd.MM.yyyy}'}" />
                         <GridViewColumn Header="Note" 
                                     Width="40" 
                                     DisplayMemberBinding="{Binding Note}" />
-                        <GridViewColumn Header="Wichtung" 
-                                    Width="60" 
-                                    DisplayMemberBinding="{Binding Gewichtung}" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Gewichtung, Mode=OneWay}"
+                            x:Name="CheckBoxColumn" Header="Wichtung" 
+                                    Width="60" >
+
+                            <!--<GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid Width="{Binding ElementName=CheckBoxColumn, Path=Width}">
+                                        <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Gewichtung, Mode=OneWay}" IsEnabled="False"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>-->
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
+            <!--Click="Button_Click"-->
             <Button Content="Neue Note" 
                 HorizontalAlignment="Right" 
                 Height="40"
                 VerticalAlignment="Center" 
                 Width="145"
-                Click="Button_Click" Grid.Column="3" Grid.Row="1" Margin="0,136.667,0,107"/>
-            <Button Name="DeleteButton"
-                Visibility="Hidden"
+                Grid.Column="3" Grid.Row="1" Margin="0,136.667,0,107"
+                    Command="{Binding NewCommand}"/>
+            <!--Name="DeleteButton"-->
+            <!--Click="Button_Click_Delete" -->
+            <Button 
                 Content="Note löschen" 
                 HorizontalAlignment="Left" 
                 Height="40"
                 VerticalAlignment="Center" 
-                Width="145"
-                Click="Button_Click_Delete" Grid.Column="3" Grid.Row="1" Margin="0.333,136.667,0,107"/>
-            <Label Foreground="White"
+                Width="145"    
+                Grid.Column="3" Grid.Row="1" Margin="0.333,136.667,0,107"
+                Command="{Binding DeleteCommand}"
+                CommandParameter="{Binding ElementName=PART_Marks, Path=SelectedItem}"/>
+            <Label Foreground="Black"
                 Content="Zeugnisnote: " 
                HorizontalAlignment="Left" 
                Height="Auto" 
                Width="Auto" 
                Grid.Column="3"
                    VerticalAlignment="Bottom" Grid.Row="1"/>
-            <Label Content="{Binding TotalGrade}" 
-                   Foreground="White"
+            <Label Foreground="Black"
                HorizontalAlignment="Center" 
                Height="Auto" 
                VerticalAlignment="Bottom" 
                Width="Auto" 
-                   Grid.Column="3" Grid.Row="1"/>
+                   Grid.Column="3" Grid.Row="1">
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <Setter Property="Content" Value="{Binding ElementName=PART_SchoolYears,Path=SelectedItem.Note, StringFormat='{}{0:N2}'}"/>
+                <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=PART_SchoolYears,Path=SelectedItem.Note}" 
+                                         Value="0">
+                                <Setter Property="Content" Value="Keine Noten eingetragen!" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
         </Grid>
     </Grid>
 </Window>

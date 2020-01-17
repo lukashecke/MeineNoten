@@ -4,12 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MeineNoten.View"
+        xmlns:localvm="clr-namespace:MeineNoten.ViewModel"
         mc:Ignorable="d"
         Title="Neue Note" 
         Height="267" 
         Width="384"
         Background="LightGray"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
     <!--ResizeMode="CanMinimize"-->
     <Grid>
         <Label Content="Fach" 
@@ -42,8 +44,7 @@
                Margin="210,83,0,0" 
                VerticalAlignment="Top" 
                Width="85"/>
-        <ComboBox DataContext="{Binding}" 
-                  ItemsSource="{Binding Grades}"
+        <ComboBox ItemsSource="{Binding Grades}"
                   SelectedItem="{Binding SelectedGrade}"
                   HorizontalAlignment="Left" 
                   Height="25" 
@@ -56,21 +57,22 @@
                     VerticalAlignment="Top" 
                     Width="150"/>
         <TextBox Name="PART_Beschreibung"
-                 Text="{Binding Art}"
+                 Text="{Binding SelectedDescription}"
                  HorizontalAlignment="Left" 
                  Height="20" 
                  Margin="15,113,0,0" 
                  TextWrapping="Wrap"
                  VerticalAlignment="Top" 
                  Width="150"/>
-        <ComboBox DataContext="{Binding}" 
-                  ItemsSource="{Binding Subjects}"
-                  SelectedItem="{Binding SelectedSubject}"
+        <ComboBox 
+                  ItemsSource="{Binding SchoolYearViewModel.SubjectViewModels}"
+                  SelectedItem="{Binding SchoolYearViewModel.SubjectViewModels.Current}"
                   HorizontalAlignment="Left" 
                   Height="25" 
                   Margin="15,40,0,0" 
                   VerticalAlignment="Top" 
-                  Width="150"/>
+                  Width="150"
+        DisplayMemberPath="Title"/>
         <CheckBox IsChecked="{Binding SelectedWeighting}"
                   Content="x2" 
                   HorizontalAlignment="Left" 
@@ -78,7 +80,9 @@
                   Margin="215,40,0,0" 
                   VerticalAlignment="Top" 
                   Width="50"/>
-        <Button Click="Button_Click" 
+        <!--Click="Button_Click" -->
+        <Button Command="{Binding SaveCommand}"
+            
                 Content="Eintragen" 
                 HorizontalAlignment="Left" 
                 Height="40" 
