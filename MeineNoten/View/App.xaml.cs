@@ -30,8 +30,8 @@ namespace MeineNoten
 
 
                 // TODO: Splash Screen und Programm immer im selben Fenster öffnen
-                //SplashScreen splashScreen = new SplashScreen("Images/Splash Screen.png");
-                //splashScreen.Show(true, true);
+                SplashScreen splashScreen = new SplashScreen("Images/Splash Screen.png");
+                splashScreen.Show(true, true);
 
                 MeineNoten.Class.MeineNoten.LoadData();
 

@@ -4,6 +4,7 @@ using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace MeineNoten.Class
 {
     public static class MeineNoten
     {
-        private static String path = @"C:\Temp\MeineNoten.xml";
+        private static String path = @"C:\ProgramData\Meine Noten\MeineNoten.xml";
 
         private static DataSet database;
         public static DataSet Database
@@ -349,6 +350,11 @@ namespace MeineNoten.Class
         {
             try
             {
+                if (!System.IO.Directory.Exists(@"C:\ProgramData\Meine Noten"))
+                {
+                CreateDirectory();
+                }
+
                 MeineNoten.Database.WriteXml(path, XmlWriteMode.WriteSchema);
 
             }
@@ -356,6 +362,12 @@ namespace MeineNoten.Class
             {
                 // Bei Erststart des Programms wird das Laden hier problemlos übersprungen
             }
+        }
+        // [PrincipalPermission(SecurityAction.Demand, Role = @"BUILTIN\Administrators")]
+        private static void CreateDirectory()
+        {
+            Directory.CreateDirectory(@"C:\ProgramData\Meine Noten");
+
         }
     }
 }

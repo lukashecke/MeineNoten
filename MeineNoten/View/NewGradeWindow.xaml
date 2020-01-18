@@ -11,7 +11,7 @@
         Width="384"
         Background="LightGray"
         ResizeMode="NoResize"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterScreen">
     <!--ResizeMode="CanMinimize"-->
     <Grid FocusManager.FocusedElement="{Binding ElementName=PART_Beschreibung}">
         <Label Content="Fach" 

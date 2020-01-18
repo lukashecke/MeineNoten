@@ -89,10 +89,17 @@ namespace MeineNoten.ViewModel
         }
         public void CommandSave(object param)
         {
+            if (String.IsNullOrWhiteSpace(SelectedDescription)||SelectedGrade==0)
+            {
+                MessageBox.Show("Bitte trage alle benötigten Informationen zur Note ein.","Auswahl nicht vollständig!");
+            }
+            else
+            {
             MeineNoten.Class.MeineNoten.Database.Tables["Grades"].Rows.Add((DataRow)this.MarkViewModel.Model);
             this.SchoolYearViewModel.SubjectViewModels.Current.MarkViewModels.Add(this.MarkViewModel);
             // Closes the current opened NewGradeWindow
             Application.Current.Windows.OfType<NewGradeWindow>().First().Close();
+            }
         }
         
 
