@@ -122,7 +122,7 @@ namespace MeineNoten.ViewModel
         {
             get
             {
-                return  Enum.GetValues(typeof(Grades));
+                return Enum.GetValues(typeof(Grades)).Cast<int>().ToArray();
             }
         }
     }
