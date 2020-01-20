@@ -60,12 +60,12 @@ namespace MeineNoten.ViewModel
             }
         }
 
-        private Grades selectedGrade;
-        public Grades SelectedGrade
+        private int selectedGrade;
+        public int SelectedGrade
         {
             get
             {
-                return (Grades)this.MarkViewModel.Note;
+                return this.MarkViewModel.Note;
             }
             set
             {
