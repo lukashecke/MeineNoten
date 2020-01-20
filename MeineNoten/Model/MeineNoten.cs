@@ -67,16 +67,6 @@ namespace MeineNoten.Class
                 dataRow["SYID"] = 1;
                 dataRow["Title"] = "2019/20";
                 dataTable.Rows.Add(dataRow);
-
-                dataRow = dataTable.NewRow();
-                dataRow["SYID"] = 2;
-                dataRow["Title"] = "2020/21";
-                dataTable.Rows.Add(dataRow);
-
-                dataRow = dataTable.NewRow();
-                dataRow["SYID"] = 3;
-                dataRow["Title"] = "2021/22";
-                dataTable.Rows.Add(dataRow);
                 #endregion
 
                 #region Subjects
@@ -89,54 +79,71 @@ namespace MeineNoten.Class
 
                 dataRow = dataTable.NewRow();
                 dataRow["SUID"] = 1;
-                dataRow["Title"] = "Anwendungsentwicklung und Programmierung";
+                dataRow["Title"] = "BP";
                 dataTable.Rows.Add(dataRow);
 
                 dataRow = dataTable.NewRow();
                 dataRow["SUID"] = 2;
-                dataRow["Title"] = "IT-Systeme";
+                dataRow["Title"] = "E";
                 dataTable.Rows.Add(dataRow);
 
                 dataRow = dataTable.NewRow();
                 dataRow["SUID"] = 3;
-                dataRow["Title"] = "Vernetzte Systeme";
+                dataRow["Title"] = "CAE";
                 dataTable.Rows.Add(dataRow);
 
                 dataRow = dataTable.NewRow();
                 dataRow["SUID"] = 4;
-                dataRow["Title"] = "Betriebswirtschaftliche Prozesse";
+                dataRow["Title"] = "MSE";
                 dataTable.Rows.Add(dataRow);
 
                 dataRow = dataTable.NewRow();
                 dataRow["SUID"] = 5;
-                dataRow["Title"] = "Sozialkunde";
+                dataRow["Title"] = "ME";
                 dataTable.Rows.Add(dataRow);
 
                 dataRow = dataTable.NewRow();
                 dataRow["SUID"] = 6;
-                dataRow["Title"] = "Deutsch";
+                dataRow["Title"] = "KON";
                 dataTable.Rows.Add(dataRow);
 
                 dataRow = dataTable.NewRow();
                 dataRow["SUID"] = 7;
-                dataRow["Title"] = "Englisch";
+                dataRow["Title"] = "ROB";
                 dataTable.Rows.Add(dataRow);
 
                 dataRow = dataTable.NewRow();
                 dataRow["SUID"] = 8;
-                dataRow["Title"] = "Ethik";
+                dataRow["Title"] = "SE";
                 dataTable.Rows.Add(dataRow);
 
                 dataRow = dataTable.NewRow();
                 dataRow["SUID"] = 9;
-                dataRow["Title"] = "Sport";
+                dataRow["Title"] = "TE";
                 dataTable.Rows.Add(dataRow);
 
                 dataRow = dataTable.NewRow();
                 dataRow["SUID"] = 10;
-                dataRow["Title"] = "Crimpen und Löten";
+                dataRow["Title"] = "MES";
                 dataTable.Rows.Add(dataRow);
-                
+
+                dataRow = dataTable.NewRow();
+                dataRow["SUID"] = 11;
+                dataRow["Title"] = "MT";
+                dataTable.Rows.Add(dataRow);
+
+                dataRow = dataTable.NewRow();
+                dataRow["SUID"] = 12;
+                dataRow["Title"] = "BWP";
+                dataTable.Rows.Add(dataRow);
+
+                dataRow = dataTable.NewRow();
+                dataRow["SUID"] = 13;
+                dataRow["Title"] = "MZ";
+                dataTable.Rows.Add(dataRow);
+
+
+
                 #endregion
 
                 #region SchoolYearSubjects
@@ -210,123 +217,142 @@ namespace MeineNoten.Class
 
                 dataRow = dataTable.NewRow();
                 dataRow["SSID"] = 11;
-                dataRow["SYID"] = 2;
-                dataRow["SUID"] = 1;
+                dataRow["SYID"] = 1;
+                dataRow["SUID"] = 11;
                 dataTable.Rows.Add(dataRow);
 
                 dataRow = dataTable.NewRow();
                 dataRow["SSID"] = 12;
-                dataRow["SYID"] = 2;
-                dataRow["SUID"] = 2;
+                dataRow["SYID"] = 1;
+                dataRow["SUID"] = 12;
                 dataTable.Rows.Add(dataRow);
 
                 dataRow = dataTable.NewRow();
                 dataRow["SSID"] = 13;
-                dataRow["SYID"] = 2;
-                dataRow["SUID"] = 3;
+                dataRow["SYID"] = 1;
+                dataRow["SUID"] = 13;
                 dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 14;
-                dataRow["SYID"] = 2;
-                dataRow["SUID"] = 4;
-                dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 15;
-                dataRow["SYID"] = 2;
-                dataRow["SUID"] = 5;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 11;
+                //dataRow["SYID"] = 2;
+                //dataRow["SUID"] = 1;
+                //dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 16;
-                dataRow["SYID"] = 2;
-                dataRow["SUID"] = 6;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 12;
+                //dataRow["SYID"] = 2;
+                //dataRow["SUID"] = 2;
+                //dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 17;
-                dataRow["SYID"] = 2;
-                dataRow["SUID"] = 7;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 13;
+                //dataRow["SYID"] = 2;
+                //dataRow["SUID"] = 3;
+                //dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 18;
-                dataRow["SYID"] = 2;
-                dataRow["SUID"] = 8;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 14;
+                //dataRow["SYID"] = 2;
+                //dataRow["SUID"] = 4;
+                //dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 19;
-                dataRow["SYID"] = 2;
-                dataRow["SUID"] = 9;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 15;
+                //dataRow["SYID"] = 2;
+                //dataRow["SUID"] = 5;
+                //dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 20;
-                dataRow["SYID"] = 2;
-                dataRow["SUID"] = 10;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 16;
+                //dataRow["SYID"] = 2;
+                //dataRow["SUID"] = 6;
+                //dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 21;
-                dataRow["SYID"] = 3;
-                dataRow["SUID"] = 1;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 17;
+                //dataRow["SYID"] = 2;
+                //dataRow["SUID"] = 7;
+                //dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 22;
-                dataRow["SYID"] = 3;
-                dataRow["SUID"] = 2;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 18;
+                //dataRow["SYID"] = 2;
+                //dataRow["SUID"] = 8;
+                //dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 23;
-                dataRow["SYID"] = 3;
-                dataRow["SUID"] = 3;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 19;
+                //dataRow["SYID"] = 2;
+                //dataRow["SUID"] = 9;
+                //dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 24;
-                dataRow["SYID"] = 3;
-                dataRow["SUID"] = 4;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 20;
+                //dataRow["SYID"] = 2;
+                //dataRow["SUID"] = 10;
+                //dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 25;
-                dataRow["SYID"] = 3;
-                dataRow["SUID"] = 5;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 21;
+                //dataRow["SYID"] = 3;
+                //dataRow["SUID"] = 1;
+                //dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 26;
-                dataRow["SYID"] = 3;
-                dataRow["SUID"] = 6;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 22;
+                //dataRow["SYID"] = 3;
+                //dataRow["SUID"] = 2;
+                //dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 27;
-                dataRow["SYID"] = 3;
-                dataRow["SUID"] = 7;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 23;
+                //dataRow["SYID"] = 3;
+                //dataRow["SUID"] = 3;
+                //dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 28;
-                dataRow["SYID"] = 3;
-                dataRow["SUID"] = 8;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 24;
+                //dataRow["SYID"] = 3;
+                //dataRow["SUID"] = 4;
+                //dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 29;
-                dataRow["SYID"] = 3;
-                dataRow["SUID"] = 9;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 25;
+                //dataRow["SYID"] = 3;
+                //dataRow["SUID"] = 5;
+                //dataTable.Rows.Add(dataRow);
 
-                dataRow = dataTable.NewRow();
-                dataRow["SSID"] = 30;
-                dataRow["SYID"] = 3;
-                dataRow["SUID"] = 10;
-                dataTable.Rows.Add(dataRow);
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 26;
+                //dataRow["SYID"] = 3;
+                //dataRow["SUID"] = 6;
+                //dataTable.Rows.Add(dataRow);
+
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 27;
+                //dataRow["SYID"] = 3;
+                //dataRow["SUID"] = 7;
+                //dataTable.Rows.Add(dataRow);
+
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 28;
+                //dataRow["SYID"] = 3;
+                //dataRow["SUID"] = 8;
+                //dataTable.Rows.Add(dataRow);
+
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 29;
+                //dataRow["SYID"] = 3;
+                //dataRow["SUID"] = 9;
+                //dataTable.Rows.Add(dataRow);
+
+                //dataRow = dataTable.NewRow();
+                //dataRow["SSID"] = 30;
+                //dataRow["SYID"] = 3;
+                //dataRow["SUID"] = 10;
+                //dataTable.Rows.Add(dataRow);
                 #endregion
 
                 dataTable = new DataTable("Grades");
