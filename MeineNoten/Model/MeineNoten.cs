@@ -139,7 +139,7 @@ namespace MeineNoten.Class
 
                 dataRow = dataTable.NewRow();
                 dataRow["SUID"] = 13;
-                dataRow["Title"] = "MZ";
+                dataRow["Title"] = "M";
                 dataTable.Rows.Add(dataRow);
 
 

@@ -20,7 +20,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <Grid Margin="0,20,0,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -119,8 +119,8 @@
                   Cursor="Help" 
                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,35,0,0" Grid.RowSpan="2" >
                 <ListView.View>
-                    
-                    
+
+
                     <GridView>
                         <GridViewColumn Header="Fach" 
                                     Width="250" 
@@ -144,7 +144,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        
+
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -226,7 +226,7 @@
                 Command="{Binding DeleteCommand}"
                 CommandParameter="{Binding ElementName=PART_Marks, Path=SelectedItem}"/>
             <Label Foreground="Black"
-                Content="Zeugnisnote: " 
+                Content="Zeugnisdurchschnitt: " 
                HorizontalAlignment="Left" 
                Height="Auto" 
                Width="Auto" 
@@ -234,10 +234,10 @@
                    VerticalAlignment="Bottom" Grid.Row="1"/>
             <Label Foreground="Black"
                HorizontalAlignment="Center" 
-               Height="Auto" 
+               Height="38" 
                VerticalAlignment="Bottom" 
-               Width="Auto" 
-                   Grid.Column="3" Grid.Row="1">
+               Width="190" 
+                   Grid.Column="3" Grid.Row="1" Margin="127.8,0,52.6,22.4" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <Label.Style>
                     <Style TargetType="Label">
                         <Setter Property="Content" 
