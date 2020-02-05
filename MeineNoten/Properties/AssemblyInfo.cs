@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("MeineNoten")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Lukas Hecke")]
 [assembly: AssemblyProduct("MeineNoten")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
